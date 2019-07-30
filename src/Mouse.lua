@@ -1,6 +1,14 @@
 -- 编写鼠标移动的函数,1,2,3,4分别代表上下左右 --
 function MouseMove()
-    
+    if math.abs(touchEndPoint.x-touchBeginPoint.x) <= math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.y > touchBeginPoint.y then
+        return 1
+    elseif math.abs(touchEndPoint.x-touchBeginPoint.x) <= math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.y <= touchBeginPoint.y then
+        return 2
+    elseif math.abs(touchEndPoint.x-touchBeginPoint.x) > math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.x <= touchBeginPoint.x then
+        return 3
+    elseif math.abs(touchEndPoint.x-touchBeginPoint.x) > math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.x > touchBeginPoint.x then
+        return 4
+    end
 end
 
 function mouseLinsener(mouse)
