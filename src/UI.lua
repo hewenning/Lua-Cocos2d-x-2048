@@ -23,13 +23,12 @@ function createLayerBackground()
     
     -- 2048的LOGO --
     local LOGO = cc.Label:createWithTTF( "2048", "fonts/Fingerpop.ttf", 45)
-    LOGO:enableShadow(cc.BLACK, cc.size(5,2), 3)--cc.size(2, -2), 0)
+    LOGO:enableShadow(cc.BLACK, cc.size(5,2), 3)
     LayerBackground:addChild(LOGO)
     LOGO:setPosition(120,290)
     LOGO:setAnchorPoint(0.5, 0.5)
 
     -- 把分数字体标签，显示在游戏区域的上方 --
-    --local ScoreLabel = cc.LabelBMFont:create("Score:", "fonts/bitmapFontTest4.fnt")
     local ScoreLabel = cc.Label:createWithBMFont( "fonts/bitmapFontTest4.fnt", "Score:")
     LayerBackground:addChild(ScoreLabel)
     ScoreLabel:setPosition(45, 220)
@@ -52,4 +51,5 @@ function createLayerBackground()
     
     -- 返回图层 -- 
     return LayerBackground
+
 end

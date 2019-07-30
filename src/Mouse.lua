@@ -1,9 +1,6 @@
-require "Algorithm.lua"
-
-
 -- 编写鼠标移动的函数,1,2,3,4分别代表上下左右 --
 function MouseMove()
-    -- 判断鼠标的移动方向
+    
 end
 
 function mouseLinsener(mouse)

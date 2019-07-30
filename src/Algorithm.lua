@@ -1,3 +1,5 @@
+require "Mouse.lua"
+
 --------------------
 --     À„∑®≤ø∑÷    --
 --------------------
@@ -20,6 +22,7 @@ function random()
     randomNumber:setAnchorPoint(0.5, 0.5) 
     
     return randomNumber
+    
 end
 
 
