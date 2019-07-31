@@ -1,73 +1,64 @@
 mouse = {}
+-- 存取鼠标数据的函数 --
+local mousePosition = {0, 0, 0, 0}
 
--- -- 编写鼠标移动的函数,1,2,3,4分别代表上下左右 --
--- function mouse.MouseMove()
---     if math.abs(touchEndPoint.x-touchBeginPoint.x) <= math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.y > touchBeginPoint.y then
---         return 1
---     elseif math.abs(touchEndPoint.x-touchBeginPoint.x) <= math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.y <= touchBeginPoint.y then
---         return 2
---     elseif math.abs(touchEndPoint.x-touchBeginPoint.x) > math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.x <= touchBeginPoint.x then
---         return 3
---     elseif math.abs(touchEndPoint.x-touchBeginPoint.x) > math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.x > touchBeginPoint.x then
---         return 4
---     end
--- end
-
-function mouse.mouseLinsener(mouse)
+-- 鼠标监听事件 --
+function mouse.mouseLinsener()
     --------------------
     --     事件部分    --
     --------------------
     -- 处理鼠标事件 --
     -- 开始点击
+
     local touchBeginPoint = nil
     local function onTouchBegan(touch, event)
-        local location = touch:getLocation()
-        cclog("onTouchBegan: %0.2f, %0.2f", location.x, location.y)
-        touchBeginPoint = {x = location.x, y = location.y}
+        local touchBeginPoint = touch:getLocation()
+        cclog("onTouchBegan: %0.2f, %0.2f", touchBeginPoint.x, touchBeginPoint.y)
         -- CCTOUCHBEGAN event must return true
+        mousePosition[1] = touchBeginPoint.x
+        mousePosition[2] = touchBeginPoint.y
         return true
     end
 
-    -- -- 鼠标移动
-    -- local function onTouchMoved(touch, event)
-    --     local location = touch:getLocation()
-    --     cclog("onTouchMoved: %0.2f, %0.2f", location.x, location.y)
-    --     if touchBeginPoint then
-    --         local cx, cy = mouse:getPosition()
-    --         mouse:setPosition(cx + location.x - touchBeginPoint.x, cy + location.y - touchBeginPoint.y)
-    --         touchBeginPoint = {x = location.x, y = location.y}
-    --     end
-    -- end
-
     -- 鼠标松开
     local function onTouchEnded(touch, event)
-        local location = touch:getLocation()
-        cclog("onTouchEnded: %0.2f, %0.2f", location.x, location.y)
+        local touchEndPoint = touch:getLocation()
+        cclog("onTouchEnded: %0.2f, %0.2f", touchEndPoint.x, touchEndPoint.y)
         touchBeginPoint = nil
+        mousePosition[3] = touchEndPoint.x
+        mousePosition[4] = touchEndPoint.y
+        
+        -- 判断鼠标移动的方向--
+        if math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] > mousePosition[2] then
+            mouse.getMoveInformation(1)
+        elseif math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] <= mousePosition[2] then
+            mouse.getMoveInformation(2)
+        elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] <= mousePosition[1] then
+            mouse.getMoveInformation(3)
+        elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] > mousePosition[1] then
+            mouse.getMoveInformation(4)
+        end
     end
-
-
-
-    -- 鼠标事件监听
+    
+    -- 鼠标事件监听,注册鼠标事件 --
     local listener = cc.EventListenerTouchOneByOne:create()
     listener:registerScriptHandler(onTouchBegan,cc.Handler.EVENT_TOUCH_BEGAN )
-    --listener:registerScriptHandler(onTouchMoved,cc.Handler.EVENT_TOUCH_MOVED )
     listener:registerScriptHandler(onTouchEnded,cc.Handler.EVENT_TOUCH_ENDED )
-    local eventDispatcher = mouse:getEventDispatcher()
-    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, mouse)
-    
-    -- 编写鼠标移动的函数,1,2,3,4分别代表上下左右 --
+    return listener
 
-    -- if math.abs(touchEndPoint.x-touchBeginPoint.x) <= math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.y > touchBeginPoint.y then
-    --     return 1
-    -- elseif math.abs(touchEndPoint.x-touchBeginPoint.x) <= math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.y <= touchBeginPoint.y then
-    --     return 2
-    -- elseif math.abs(touchEndPoint.x-touchBeginPoint.x) > math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.x <= touchBeginPoint.x then
-    --     return 3
-    -- elseif math.abs(touchEndPoint.x-touchBeginPoint.x) > math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.x > touchBeginPoint.x then
-    --     return 4
-    -- end
+end
 
+-- 接受鼠标移动信息的函数 --
+function mouse.getMoveInformation(number)
+    if number == 1 then
+        print("up")
+    elseif number == 2 then
+        print("down")
+    elseif number == 3 then
+        print("left")
+    elseif number == 4 then
+        print("right")
+    end
 end
 
 return mouse
