@@ -1,5 +1,7 @@
+mouse = {}
+
 -- 编写鼠标移动的函数,1,2,3,4分别代表上下左右 --
-function MouseMove()
+function mouse.MouseMove()
     if math.abs(touchEndPoint.x-touchBeginPoint.x) <= math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.y > touchBeginPoint.y then
         return 1
     elseif math.abs(touchEndPoint.x-touchBeginPoint.x) <= math.abs(touchEndPoint.y - touchBeginPoint.y) and touchEndPoint.y <= touchBeginPoint.y then
@@ -11,7 +13,7 @@ function MouseMove()
     end
 end
 
-function mouseLinsener(mouse)
+function mouse.mouseLinsener(mouse)
     --------------------
     --     事件部分    --
     --------------------
@@ -53,3 +55,5 @@ function mouseLinsener(mouse)
     eventDispatcher:addEventListenerWithSceneGraphPriority(listener, mouse)
 
 end
+
+return mouse

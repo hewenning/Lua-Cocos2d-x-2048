@@ -1,9 +1,9 @@
-require "Mouse.lua"
-
+require "mouse"
+algorithm = {}
 --------------------
 --     算法部分    --
 --------------------
-function random()
+function algorithm.random()
     --------------------
     --     随机数部分    --
     --------------------
@@ -22,14 +22,14 @@ function random()
     randomNumber:setAnchorPoint(0.5, 0.5) 
     
     return randomNumber
-    
+
 end
 
 
 
 
 -- 根据鼠标的移动方向，从而决定块的移动 --
-function direction()
+function algorithm.direction()
     -- 利用一个1*16数组存储每个节点出现的信息,开始的时候都初始化为0,数字的值代表该位置出现的数字，只可能是2的倍数 --
     ArrayValue = {}
     for i=1, 16 do
@@ -211,3 +211,5 @@ function direction()
     --     end                
     -- end
 end
+
+return algorithm

@@ -1,6 +1,4 @@
-require "Mouse.lua"
-require "Algorithm.lua"
-
+require "algorithm"
 -- 创建背景图层 --
 function createLayerBackground()
         
@@ -43,11 +41,11 @@ function createLayerBackground()
 
 
     -- 显示随机数 --
-    randomNumber = random()
+    randomNumber = algorithm.random()
     GameBoard:addChild(randomNumber)
 
     -- 处理鼠标动作
-    mouseLinsener(randomNumber)
+    mouse.mouseLinsener(randomNumber)
     
     -- 返回图层 -- 
     return LayerBackground
