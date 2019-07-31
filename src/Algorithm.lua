@@ -3,6 +3,20 @@ algorithm = {}
 --------------------
 --     算法部分    --
 --------------------
+-- -- 接受鼠标移动信息的函数 --
+-- function algorithm.getMoveInformation(number)
+--     if number == 1 then
+--         print("向上")
+--     elseif number == 2 then
+--         print("向下")
+--     elseif number == 3 then
+--         print("向左")
+--     elseif number == 4 then
+--         print("向右")
+--     end
+-- end
+
+-- 随机数函数 -- 
 function algorithm.random()
     --------------------
     --     随机数部分    --
@@ -24,7 +38,6 @@ function algorithm.random()
     return randomNumber
 
 end
-
 
 
 

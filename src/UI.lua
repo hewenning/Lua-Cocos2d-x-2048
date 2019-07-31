@@ -45,8 +45,14 @@ function createLayerBackground()
     GameBoard:addChild(randomNumber)
 
     -- 处理鼠标动作
-    mouse.mouseLinsener(randomNumber)
+    listener = mouse.mouseLinsener()
+    local eventDispatcher = randomNumber:getEventDispatcher()
+    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, randomNumber)
     
+    -- 测试代码--
+    -- local number = mouse.MouseMove()    
+    -- print(number)
+
     -- 返回图层 -- 
     return LayerBackground
 
