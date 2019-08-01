@@ -41,13 +41,13 @@ function createLayerBackground()
 
 
     -- 显示随机数 --
-    randomNumber = algorithm.random()
-    GameBoard:addChild(randomNumber)
+    --randomNumber = algorithm.random()
+    --GameBoard:addChild(randomNumber)
 
     -- 处理鼠标动作
     listener = mouse.mouseLinsener()
-    local eventDispatcher = randomNumber:getEventDispatcher()
-    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, randomNumber)
+    local eventDispatcher = GameBoard:getEventDispatcher()
+    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, GameBoard)
     
     -- 测试代码--
     -- local number = mouse.MouseMove()    

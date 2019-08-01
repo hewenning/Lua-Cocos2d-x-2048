@@ -32,33 +32,37 @@ end
 function algorithm.piece_class:display()
 end
 
+-- 定义数字的颜色信息 --
+function algorithm.piece_class:color()
+end
+
 
 
 --------------------
 --     逻辑部分    --
 --------------------
--- 随机数函数 -- 
-function algorithm.random()
-    --------------------
-    --     随机数部分    --
-    --------------------
-    -- 用一个2*16的数组保存游戏区域中数组显示的位置 --
-    -- 初始化数组
-    ArrayPosition = {{25, 175}, {75, 175}, {125, 175}, {175, 175},
-                    {25, 125}, {75, 125}, {125, 125}, {175, 125},
-                    {25, 75}, {75, 75}, {125, 75}, {175, 75},
-                    {25, 25}, {75, 25}, {125, 25}, {175, 25}}
-    -- 在随机位置生成数字，利用系统时间最高的6位当作随机数种子
-    math.randomseed(tostring(os.time()):reverse():sub(1, 6))
-    indexNumber = math.random(1, 16)
-    -- 随机数 
-    local randomNumber = cc.LabelTTF:create("2", "fonts/Marker Felt.ttf", 40)
-    randomNumber:setPosition(ArrayPosition[indexNumber][1], ArrayPosition[indexNumber][2])
-    randomNumber:setAnchorPoint(0.5, 0.5) 
+-- -- 随机数函数 -- 
+-- function algorithm.random()
+--     --------------------
+--     --     随机数部分    --
+--     --------------------
+--     -- 用一个2*16的数组保存游戏区域中数组显示的位置 --
+--     -- 初始化数组
+--     ArrayPosition = {{25, 175}, {75, 175}, {125, 175}, {175, 175},
+--                     {25, 125}, {75, 125}, {125, 125}, {175, 125},
+--                     {25, 75}, {75, 75}, {125, 75}, {175, 75},
+--                     {25, 25}, {75, 25}, {125, 25}, {175, 25}}
+--     -- 在随机位置生成数字，利用系统时间最高的6位当作随机数种子
+--     math.randomseed(tostring(os.time()):reverse():sub(1, 6))
+--     indexNumber = math.random(1, 16)
+--     -- 随机数 
+--     local randomNumber = cc.LabelTTF:create("2", "fonts/Marker Felt.ttf", 40)
+--     randomNumber:setPosition(ArrayPosition[indexNumber][1], ArrayPosition[indexNumber][2])
+--     randomNumber:setAnchorPoint(0.5, 0.5) 
     
-    return randomNumber
+--     return randomNumber
 
-end
+-- end
 
 
 
