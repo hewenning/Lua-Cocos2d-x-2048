@@ -8,15 +8,30 @@ algorithm = {}
 -- 新建一个棋盘显示的类，并在类里面完成初始化 --
 algorithm.piece_class = class()
 
--- 构造函数 --
+-- 定义类的构造函数 --
 function algorithm.piece_class:ctor(x)
     self.x = x
 end
 
--- 定义成员函数 --
+
+-- 定义用于测试的成员函数 --
 function algorithm.piece_class:print_x()
     print(self.x)
 end
+
+
+-- 定义用于储存信息的函数，关于位置和应该显示的数字 --
+function algorithm.piece_class:getPosition()
+end
+
+function algorithm.piece_class:getNumber()
+end 
+
+
+-- 定义用于棋盘显示的函数 -- 
+function algorithm.piece_class:display()
+end
+
 
 
 --------------------
