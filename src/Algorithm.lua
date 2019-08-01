@@ -2,25 +2,26 @@ require "class"
 require "mouse"
 algorithm = {}
 --------------------
---     算法部分    --
+--    逻辑显示部分     --
 --------------------
 -- 设定一个显示的类，可以新建对象，每个对象可以使用里面的函数 --
 -- 新建一个棋盘显示的类，并在类里面完成初始化 --
-piece_class = class()
+algorithm.piece_class = class()
+
+-- 构造函数 --
+function algorithm.piece_class:ctor(x)
+    self.x = x
+end
+
+-- 定义成员函数 --
+function algorithm.piece_class:print_x()
+    print(self.x)
+end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+--------------------
+--     逻辑部分    --
+--------------------
 -- 随机数函数 -- 
 function algorithm.random()
     --------------------
