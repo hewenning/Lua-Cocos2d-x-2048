@@ -1,20 +1,25 @@
+require "class"
 require "mouse"
 algorithm = {}
 --------------------
 --     算法部分    --
 --------------------
--- -- 接受鼠标移动信息的函数 --
--- function algorithm.getMoveInformation(number)
---     if number == 1 then
---         print("向上")
---     elseif number == 2 then
---         print("向下")
---     elseif number == 3 then
---         print("向左")
---     elseif number == 4 then
---         print("向右")
---     end
--- end
+-- 设定一个显示的类，可以新建对象，每个对象可以使用里面的函数 --
+-- 新建一个棋盘显示的类，并在类里面完成初始化 --
+piece_class = class()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- 随机数函数 -- 
 function algorithm.random()

@@ -40,6 +40,7 @@ function mouse.mouseLinsener()
         end
     end
     
+    
     -- 鼠标事件监听,注册鼠标事件 --
     local listener = cc.EventListenerTouchOneByOne:create()
     listener:registerScriptHandler(onTouchBegan,cc.Handler.EVENT_TOUCH_BEGAN )
@@ -48,7 +49,7 @@ function mouse.mouseLinsener()
 
 end
 
--- 接受鼠标移动信息的函数 --
+-- 测试鼠标移动信息的函数 --
 function mouse.getMoveInformation(number)
     if number == 1 then
         print("up")
