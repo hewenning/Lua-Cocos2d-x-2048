@@ -177,6 +177,7 @@ function algorithm.direction(move)
                 end
             end  
         end
+        print("over")
     end
 
     -- 向下移动
@@ -213,6 +214,7 @@ function algorithm.direction(move)
                 end
             end  
         end
+        print("over")
     end 
     
     -- 向左移动
@@ -249,6 +251,7 @@ function algorithm.direction(move)
                 end
             end  
         end
+        print("over")
     end
 
     -- 向右移动
@@ -285,7 +288,7 @@ function algorithm.direction(move)
                 end
             end  
         end
-    
+        print("over")
     end
     
     -- 判断游戏是否结束
