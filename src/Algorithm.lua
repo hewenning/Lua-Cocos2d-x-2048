@@ -9,8 +9,10 @@ algorithm = {}
 algorithm.piece_class = class()
 
 -- 定义类的构造函数 --
-function algorithm.piece_class:ctor(x)
-    self.x = x
+function algorithm.piece_class:ctor(num, cX, cY)
+    self.number = num
+    self.cX = cX
+    self.cY = cY
 end
 
 
@@ -132,158 +134,160 @@ Piece_16 = algorithm.piece_class.new()
 
 -- end
 
-
-
 -- 根据鼠标的移动方向，从而决定块的移动 --
-function algorithm.direction()
+function algorithm.direction(move)
     -- 利用一个1*16数组存储每个节点出现的信息,开始的时候都初始化为0,数字的值代表该位置出现的数字，只可能是2的倍数 --
     ArrayValue = {}
     for i=1, 16 do
-        table.insert(ArrayValue, 0)
+        table.insert(ArrayValue, 2)
     end
-    -- 编写块的移动算法 --     
-    -- local move = MouseMove()
-    -- -- 向上移动
-    -- if move = 1 then
-    --     -- 遍历所有非空元素
-    --     for position, value in ipairs(ArrayValue) do
-    --         if ArrayValue[position] ~= 0 then
-    --             -- 如果当前元素在第一个位置
-    --             if position == 1 or position == 2 or position == 3 or position == 4 then
-    --                 -- 不动
-    --                 ArrayValue[position] = ArrayValue[position]
-    --             -- 如果不在第一个位置
-    --             else
-    --                 -- 如果当前元素上方是空元素
-    --                 if ArrayValue[position-4] = 0 then
-    --                     -- 向上移动
-    --                     ArrayValue[position-4] = ArrayValue[position]
-    --                     ArrayValue[position] = 0
-    --                 -- 如果当前元素上方是非空元素
-    --                 else
-    --                     -- 如果上方元素和当前元素的内容不同
-    --                     if ArrayValue[position-4] ~= ArrayValue[position] then
-    --                         -- 不动 
-    --                         ArrayValue[position-4] = ArrayValue[position-4]
-    --                         ArrayValue[position] = ArrayValue[position]
-    --                     -- 如果上方元素与当前元素内容相同 
-    --                     else
-    --                         -- 向上合并
-    --                         ArrayValue[position-4] = ArrayValue[position-4] + ArrayValue[position]
-    --                         ArrayValue[position] = 0
-    --                     end
-    --                 end
-    --             end
-    --         end  
-    --     end
-    -- end
-
-    -- -- 向下移动
-    -- if move = 2 then
-    --     -- 遍历所有非空元素
-    --     for position, value in ipairs(ArrayValue) do
-    --         if ArrayValue[position] ~= 0 then
-    --             -- 如果当前元素在第一个位置
-    --             if position == 13 or position == 14 or position == 15 or position == 16 then
-    --                 -- 不动
-    --                 ArrayValue[position] = ArrayValue[position]
-    --             -- 如果不在第一个位置
-    --             else
-    --                 -- 如果当前元素下方是空元素
-    --                 if ArrayValue[position+4] = 0 then
-    --                     -- 向下移动
-    --                     ArrayValue[position+4] = ArrayValue[position]
-    --                     ArrayValue[position] = 0
-    --                 -- 如果当前元素下方是非空元素
-    --                 else
-    --                     -- 如果下方元素和当前元素的内容不同
-    --                     if ArrayValue[position+4] ~= ArrayValue[position] then
-    --                         -- 不动 
-    --                         ArrayValue[position+4] = ArrayValue[position+4]
-    --                         ArrayValue[position] = ArrayValue[position]
-    --                     -- 如果下方元素与当前元素内容相同 
-    --                     else
-    --                         -- 向下合并
-    --                         ArrayValue[position+4] = ArrayValue[position+4] + ArrayValue[position]
-    --                         ArrayValue[position] = 0
-    --                     end
-    --                 end
-    --             end
-    --         end  
-    --     end
-    -- end 
     
-    -- -- 向左移动
-    -- if move = 3 then
-    --     -- 遍历所有非空元素
-    --     for position, value in ipairs(ArrayValue) do
-    --         if ArrayValue[position] ~= 0 then
-    --             -- 如果当前元素在第一个位置
-    --             if position == 1 or position == 5 or position == 9 or position == 13 then
-    --                 -- 不动
-    --                 ArrayValue[position] = ArrayValue[position]
-    --             -- 如果不在第一个位置
-    --             else
-    --                 -- 如果当前元素左侧是空元素
-    --                 if ArrayValue[position-1] = 0 then
-    --                     -- 向左移动
-    --                     ArrayValue[position-1] = ArrayValue[position]
-    --                     ArrayValue[position] = 0
-    --                 -- 如果当前元素左侧是非空元素
-    --                 else
-    --                     -- 如果左侧元素和当前元素的内容不同
-    --                     if ArrayValue[position-1] ~= ArrayValue[position] then
-    --                         -- 不动 
-    --                         ArrayValue[position-1] = ArrayValue[position-1]
-    --                         ArrayValue[position] = ArrayValue[position]
-    --                     -- 如果左侧元素与当前元素内容相同 
-    --                     else
-    --                         -- 向左合并
-    --                         ArrayValue[position-1] = ArrayValue[position-1] + ArrayValue[position]
-    --                         ArrayValue[position] = 0
-    --                     end
-    --                 end
-    --             end
-    --         end  
-    --     end
-    -- end
+    -- 根据接收的参数，决定鼠标的移动方向 --
+    -- 向上移动
+    if move == 1 then
+        print("up")
+        -- 遍历所有非空元素
+        for position, value in ipairs(ArrayValue) do
+            if ArrayValue[position] ~= 0 then
+                -- 如果当前元素在第一个位置
+                if position == 1 or position == 2 or position == 3 or position == 4 then
+                    -- 不动
+                    ArrayValue[position] = ArrayValue[position]
+                -- 如果不在第一个位置
+                else
+                    -- 如果当前元素上方是空元素
+                    if ArrayValue[position-4] == 0 then
+                        -- 向上移动
+                        ArrayValue[position-4] = ArrayValue[position]
+                        ArrayValue[position] = 0
+                    -- 如果当前元素上方是非空元素
+                    else
+                        -- 如果上方元素和当前元素的内容不同
+                        if ArrayValue[position-4] ~= ArrayValue[position] then
+                            -- 不动 
+                            ArrayValue[position-4] = ArrayValue[position-4]
+                            ArrayValue[position] = ArrayValue[position]
+                        -- 如果上方元素与当前元素内容相同 
+                        else
+                            -- 向上合并
+                            ArrayValue[position-4] = ArrayValue[position-4] + ArrayValue[position]
+                            ArrayValue[position] = 0
+                        end
+                    end
+                end
+            end  
+        end
+    end
 
-    -- -- 向右移动
-    -- if move = 4 then
-    --     -- 遍历所有非空元素
-    --     for position, value in ipairs(ArrayValue) do
-    --         if ArrayValue[position] ~= 0 then
-    --             -- 如果当前元素在第一个位置
-    --             if position == 4 or position == 8 or position == 12 or position == 16 then
-    --                 -- 不动
-    --                 ArrayValue[position] = ArrayValue[position]
-    --             -- 如果不在第一个位置
-    --             else
-    --                 -- 如果当前元素右侧是空元素
-    --                 if ArrayValue[position+1] = 0 then
-    --                     -- 向右移动
-    --                     ArrayValue[position+1] = ArrayValue[position]
-    --                     ArrayValue[position] = 0
-    --                 -- 如果当前元素右侧是非空元素
-    --                 else
-    --                     -- 如果右侧元素和当前元素的内容不同
-    --                     if ArrayValue[position+1] ~= ArrayValue[position] then
-    --                         -- 不动 
-    --                         ArrayValue[position+1] = ArrayValue[position+1]
-    --                         ArrayValue[position] = ArrayValue[position]
-    --                     -- 如果左侧元素与当前元素内容相同 
-    --                     else
-    --                         -- 向左合并
-    --                         ArrayValue[position+1] = ArrayValue[position+1] + ArrayValue[position]
-    --                         ArrayValue[position] = 0
-    --                     end
-    --                 end
-    --             end
-    --         end  
-    --     end
-    -- end
+    -- 向下移动
+    if move == 2 then
+        print("down")
+        -- 遍历所有非空元素
+        for position, value in ipairs(ArrayValue) do
+            if ArrayValue[position] ~= 0 then
+                -- 如果当前元素在第一个位置
+                if position == 13 or position == 14 or position == 15 or position == 16 then
+                    -- 不动
+                    ArrayValue[position] = ArrayValue[position]
+                -- 如果不在第一个位置
+                else
+                    -- 如果当前元素下方是空元素
+                    if ArrayValue[position+4] == 0 then
+                        -- 向下移动
+                        ArrayValue[position+4] = ArrayValue[position]
+                        ArrayValue[position] = 0
+                    -- 如果当前元素下方是非空元素
+                    else
+                        -- 如果下方元素和当前元素的内容不同
+                        if ArrayValue[position+4] ~= ArrayValue[position] then
+                            -- 不动 
+                            ArrayValue[position+4] = ArrayValue[position+4]
+                            ArrayValue[position] = ArrayValue[position]
+                        -- 如果下方元素与当前元素内容相同 
+                        else
+                            -- 向下合并
+                            ArrayValue[position+4] = ArrayValue[position+4] + ArrayValue[position]
+                            ArrayValue[position] = 0
+                        end
+                    end
+                end
+            end  
+        end
+    end 
     
-    -- -- 判断游戏是否结束
+    -- 向左移动
+    if move == 3 then
+        print("left")
+        -- 遍历所有非空元素
+        for position, value in ipairs(ArrayValue) do
+            if ArrayValue[position] ~= 0 then
+                -- 如果当前元素在第一个位置
+                if position == 1 or position == 5 or position == 9 or position == 13 then
+                    -- 不动
+                    ArrayValue[position] = ArrayValue[position]
+                -- 如果不在第一个位置
+                else
+                    -- 如果当前元素左侧是空元素
+                    if ArrayValue[position-1] == 0 then
+                        -- 向左移动
+                        ArrayValue[position-1] = ArrayValue[position]
+                        ArrayValue[position] = 0
+                    -- 如果当前元素左侧是非空元素
+                    else
+                        -- 如果左侧元素和当前元素的内容不同
+                        if ArrayValue[position-1] ~= ArrayValue[position] then
+                            -- 不动 
+                            ArrayValue[position-1] = ArrayValue[position-1]
+                            ArrayValue[position] = ArrayValue[position]
+                        -- 如果左侧元素与当前元素内容相同 
+                        else
+                            -- 向左合并
+                            ArrayValue[position-1] = ArrayValue[position-1] + ArrayValue[position]
+                            ArrayValue[position] = 0
+                        end
+                    end
+                end
+            end  
+        end
+    end
+
+    -- 向右移动
+    if move == 4 then
+        print("right")
+        -- 遍历所有非空元素
+        for position, value in ipairs(ArrayValue) do
+            if ArrayValue[position] ~= 0 then
+                -- 如果当前元素在第一个位置
+                if position == 4 or position == 8 or position == 12 or position == 16 then
+                    -- 不动
+                    ArrayValue[position] = ArrayValue[position]
+                -- 如果不在第一个位置
+                else
+                    -- 如果当前元素右侧是空元素
+                    if ArrayValue[position+1] == 0 then
+                        -- 向右移动
+                        ArrayValue[position+1] = ArrayValue[position]
+                        ArrayValue[position] = 0
+                    -- 如果当前元素右侧是非空元素
+                    else
+                        -- 如果右侧元素和当前元素的内容不同
+                        if ArrayValue[position+1] ~= ArrayValue[position] then
+                            -- 不动 
+                            ArrayValue[position+1] = ArrayValue[position+1]
+                            ArrayValue[position] = ArrayValue[position]
+                        -- 如果左侧元素与当前元素内容相同 
+                        else
+                            -- 向左合并
+                            ArrayValue[position+1] = ArrayValue[position+1] + ArrayValue[position]
+                            ArrayValue[position] = 0
+                        end
+                    end
+                end
+            end  
+        end
+    end
+    
+    -- 判断游戏是否结束
     -- local count = 0
     -- -- 记录非空元素的个数
     -- for JudgeEnd, JudgeValue in ipairs(ArrayValue) do
