@@ -1,6 +1,8 @@
 require "algorithm"
+ui = {index = 1, temp = 2,}
+
 -- 创建背景图层 --
-function createLayerBackground()
+function ui.createLayerBackground()
         
     local LayerBackground = cc.Layer:create()
     local visibleSize = cc.Director:getInstance():getVisibleSize()
@@ -18,6 +20,14 @@ function createLayerBackground()
     local GameBoard = cc.Sprite:create("board.jpg")
     GameBoard:setPosition(visibleSize.width / 2 , visibleSize.height / 3)
     LayerBackground:addChild(GameBoard)
+    ui.index = GameBoard
+
+    -- 新建一个作为渲染的图层 --
+    local GameBoard_Test = cc.Sprite:create("board.jpg")
+    GameBoard_Test:setPosition(0, 0)
+    GameBoard_Test:setAnchorPoint(0, 0)
+    GameBoard:addChild(GameBoard_Test)
+    ui.temp = GameBoard_Test
     
     -- 2048的LOGO --
     local LOGO = cc.Label:createWithTTF( "2048", "fonts/Fingerpop.ttf", 45)
@@ -46,11 +56,33 @@ function createLayerBackground()
 
     -- 处理鼠标动作
     listener = mouse.mouseLinsener()
-    local eventDispatcher = GameBoard:getEventDispatcher()
-    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, GameBoard)
+    local eventDispatcher = BackGround:getEventDispatcher()
+    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, BackGround)
     
 
     -- 返回图层 -- 
     return LayerBackground
 
 end
+
+--棋子所需要显示标签的数值 --
+local ArrayPosition = {{25, 175}, {75, 175}, {125, 175}, {175, 175},
+                {25, 125}, {75, 125}, {125, 125}, {175, 125},
+                {25, 75}, {75, 75}, {125, 75}, {175, 75},
+                {25, 25}, {75, 25}, {125, 25}, {175, 25}}
+
+-- 根据数组的数值和位置渲染的函数 --
+function ui.ArrayLabel(Array)
+    local ArrayValue = Array
+    -- 清除掉GameBorad的节点信息 --
+    for i,v in ipairs(ArrayValue) do
+        local numberLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 40)
+        ui.index:addChild(numberLabel)
+        numberLabel:setPosition(ArrayPosition[i][1], ArrayPosition[i][2])
+        numberLabel:setAnchorPoint(0.5, 0.5) 
+        print(v)    
+    end
+    -- ui.index:removeChild(ui.temp)
+end
+
+return ui

@@ -33,30 +33,27 @@ function mouse.mouseLinsener()
             -- mouse.getMoveInformation(1)
             -- 进入算法函数进行处理 --
             local ArrayValue = algorithm.direction(1)
-            for i,v in ipairs(ArrayValue) do
-                print(v)
-            end
+            -- 进行界面的渲染
+            ui.ArrayLabel(ArrayValue)
+
         elseif math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] <= mousePosition[2] then
             -- mouse.getMoveInformation(2)
             --algorithm.direction(2)
             local ArrayValue = algorithm.direction(2)
-            for i,v in ipairs(ArrayValue) do
-                print(v)
-            end
+            ui.ArrayLabel(ArrayValue)
+
         elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] <= mousePosition[1] then
             -- mouse.getMoveInformation(3)
             -- algorithm.direction(3)
             local ArrayValue = algorithm.direction(3)
-            for i,v in ipairs(ArrayValue) do
-                print(v)
-            end
+            ui.ArrayLabel(ArrayValue)
+
         elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] > mousePosition[1] then
             -- mouse.getMoveInformation(4)
             -- algorithm.direction(4)
             local ArrayValue = algorithm.direction(4)
-            for i,v in ipairs(ArrayValue) do
-                print(v)
-            end
+            ui.ArrayLabel(ArrayValue)
+ 
         end
 
         -- 测试类使用的代码 --
