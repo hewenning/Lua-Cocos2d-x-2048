@@ -31,18 +31,34 @@ function mouse.mouseLinsener()
         -- 判断鼠标移动的方向--
         if math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] > mousePosition[2] then
             -- mouse.getMoveInformation(1)
-            algorithm.direction(1)
+            -- 进入算法函数进行处理 --
+            local ArrayValue = algorithm.direction(1)
+            for i,v in ipairs(ArrayValue) do
+                print(v)
+            end
         elseif math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] <= mousePosition[2] then
             -- mouse.getMoveInformation(2)
-            algorithm.direction(2)
+            --algorithm.direction(2)
+            local ArrayValue = algorithm.direction(2)
+            for i,v in ipairs(ArrayValue) do
+                print(v)
+            end
         elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] <= mousePosition[1] then
             -- mouse.getMoveInformation(3)
-            algorithm.direction(3)
+            -- algorithm.direction(3)
+            local ArrayValue = algorithm.direction(3)
+            for i,v in ipairs(ArrayValue) do
+                print(v)
+            end
         elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] > mousePosition[1] then
             -- mouse.getMoveInformation(4)
-            algorithm.direction(4)
+            -- algorithm.direction(4)
+            local ArrayValue = algorithm.direction(4)
+            for i,v in ipairs(ArrayValue) do
+                print(v)
+            end
         end
-        
+
         -- 测试类使用的代码 --
         -- a = algorithm.piece_class.new(12)
         -- a:print_x()

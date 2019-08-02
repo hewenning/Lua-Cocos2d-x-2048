@@ -49,9 +49,6 @@ function createLayerBackground()
     local eventDispatcher = GameBoard:getEventDispatcher()
     eventDispatcher:addEventListenerWithSceneGraphPriority(listener, GameBoard)
     
-    -- ²âÊÔ´úÂë--
-    -- local number = mouse.MouseMove()    
-    -- print(number)
 
     -- ·µ»ØÍ¼²ã -- 
     return LayerBackground
