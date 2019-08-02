@@ -38,6 +38,7 @@ function mouse.mouseLinsener()
         elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] > mousePosition[1] then
             mouse.getMoveInformation(4)
         end
+        
         -- 测试类使用的代码 --
         a = algorithm.piece_class.new(12)
         a:print_x()
