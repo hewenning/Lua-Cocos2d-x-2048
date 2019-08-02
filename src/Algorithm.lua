@@ -285,6 +285,7 @@ function algorithm.direction(move)
                 end
             end  
         end
+    
     end
     
     -- еп╤осно╥йг╥Я╫АйЬ
