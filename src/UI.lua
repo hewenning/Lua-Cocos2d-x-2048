@@ -1,5 +1,10 @@
 require "algorithm"
 ui = {index = 1, temp = 2,}
+--棋子所需要显示标签的数值 --
+local ArrayPosition = {{25, 175}, {75, 175}, {125, 175}, {175, 175},
+                {25, 125}, {75, 125}, {125, 125}, {175, 125},
+                {25, 75}, {75, 75}, {125, 75}, {175, 75},
+                {25, 25}, {75, 25}, {125, 25}, {175, 25}}
 
 -- 创建背景图层 --
 function ui.createLayerBackground()
@@ -28,6 +33,19 @@ function ui.createLayerBackground()
     GameBoard_Test:setAnchorPoint(0, 0)
     GameBoard:addChild(GameBoard_Test)
     ui.temp = GameBoard_Test
+
+    local initArray = {}
+    for i=1, 16 do
+        table.insert(initArray, 2)
+    end
+    -- 最开始的数据刷上去 --
+    for i,v in ipairs(initArray) do
+        local initLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
+        ui.temp:addChild(initLabel)
+        initLabel:setPosition(ArrayPosition[i][1], ArrayPosition[i][2])
+        initLabel:setAnchorPoint(0.5, 0.5) 
+        print(v)    
+    end
     
     -- 2048的LOGO --
     local LOGO = cc.Label:createWithTTF( "2048", "fonts/Fingerpop.ttf", 45)
@@ -41,6 +59,7 @@ function ui.createLayerBackground()
     LayerBackground:addChild(ScoreLabel)
     ScoreLabel:setPosition(45, 220)
     ScoreLabel:setAnchorPoint(0, 0)
+    
 
     
     -- 分数数值标签 --
@@ -65,24 +84,24 @@ function ui.createLayerBackground()
 
 end
 
---棋子所需要显示标签的数值 --
-local ArrayPosition = {{25, 175}, {75, 175}, {125, 175}, {175, 175},
-                {25, 125}, {75, 125}, {125, 125}, {175, 125},
-                {25, 75}, {75, 75}, {125, 75}, {175, 75},
-                {25, 25}, {75, 25}, {125, 25}, {175, 25}}
+
 
 -- 根据数组的数值和位置渲染的函数 --
 function ui.ArrayLabel(Array)
     local ArrayValue = Array
-    -- 清除掉GameBorad的节点信息 --
+    -- 重新加图层节点 --
+    local tempGameBoard = cc.Sprite:create("board.jpg")
+    tempGameBoard:setPosition(0, 0)
+    tempGameBoard:setAnchorPoint(0, 0)
+    ui.index:addChild(tempGameBoard)
+    ui.temp = tempGameBoard
     for i,v in ipairs(ArrayValue) do
-        local numberLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 40)
-        ui.index:addChild(numberLabel)
+        local numberLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
+        ui.temp:addChild(numberLabel)
         numberLabel:setPosition(ArrayPosition[i][1], ArrayPosition[i][2])
         numberLabel:setAnchorPoint(0.5, 0.5) 
         print(v)    
     end
-    -- ui.index:removeChild(ui.temp)
 end
 
 return ui
