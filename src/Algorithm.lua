@@ -133,14 +133,15 @@ Piece_16 = algorithm.piece_class.new()
 --     return randomNumber
 
 -- end
-
+-- 初始化的时候，先把每个数组都处理掉 --
+local ArrayValue = {}
+for i=1, 16 do
+    table.insert(ArrayValue, 2)
+end
 -- 根据鼠标的移动方向，从而决定块的移动 --
 function algorithm.direction(move)
     -- 利用一个1*16数组存储每个节点出现的信息,开始的时候都初始化为0,数字的值代表该位置出现的数字，只可能是2的倍数 --
-    ArrayValue = {}
-    for i=1, 16 do
-        table.insert(ArrayValue, 2)
-    end
+
     
     -- 根据接收的参数，决定鼠标的移动方向 --
     -- 向上移动
@@ -177,6 +178,8 @@ function algorithm.direction(move)
                 end
             end  
         end
+        print("over")
+        return ArrayValue
     end
 
     -- 向下移动
@@ -213,6 +216,8 @@ function algorithm.direction(move)
                 end
             end  
         end
+        print("over")
+        return ArrayValue
     end 
     
     -- 向左移动
@@ -249,6 +254,8 @@ function algorithm.direction(move)
                 end
             end  
         end
+        print("over")
+        return ArrayValue
     end
 
     -- 向右移动
@@ -285,6 +292,8 @@ function algorithm.direction(move)
                 end
             end  
         end
+        print("over")
+        return ArrayValue
     end
     
     -- 判断游戏是否结束

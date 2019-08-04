@@ -1,6 +1,6 @@
 -- CC_USE_DEPRECATED_API = true --
 require "cocos.init"
-require "UI.lua"
+require "ui"
 
 -- cclog信息 --
 cclog = function(...)
@@ -44,7 +44,7 @@ local function main()
     -- 创建场景
     local sceneGame = cc.Scene:create()
     -- 把背景图层函数加入到场景下
-    sceneGame:addChild(createLayerBackground())
+    sceneGame:addChild(ui.createLayerBackground())
     -- 运行场景
     cc.Director:getInstance():runWithScene(sceneGame)
 
