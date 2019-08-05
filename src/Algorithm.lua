@@ -27,7 +27,7 @@ function algorithm.getRandomNumber(afterRandomArray)
     randomNum = math.random(1, length)
     -- 确定随机数的位置
     randomPosition = tempArray[randomNum]
-    afterRandomArray[randomPosition] = 1024
+    afterRandomArray[randomPosition] = 2
     return afterRandomArray
 end
 
