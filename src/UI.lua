@@ -34,10 +34,7 @@ function ui.createLayerBackground()
     GameBoard:addChild(GameBoard_Test)
     ui.temp = GameBoard_Test
 
-    local initArray = {}
-    for i=1, 16 do
-        table.insert(initArray, 2)
-    end
+    local initArray = algorithm.index
     -- 最开始的数据刷上去 --
     for i,v in ipairs(initArray) do
         local initLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
@@ -88,7 +85,7 @@ end
 
 -- 根据数组的数值和位置渲染的函数 --
 function ui.ArrayLabel(Array)
-    local ArrayValue = Array
+    local ArrayValue = algorithm.getRandomNumber(Array)
     -- 重新加图层节点 --
     local tempGameBoard = cc.Sprite:create("board.jpg")
     tempGameBoard:setPosition(0, 0)
