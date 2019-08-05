@@ -23,7 +23,7 @@ local function initGLView()
     glView:setDesignResolutionSize(240, 360, cc.ResolutionPolicy.NO_BORDER)
 
     -- 打开FPS的开关
-    director:setDisplayStats(true)
+    director:setDisplayStats(false)
 
     --设置FPS，默认值为1.0/60
     director:setAnimationInterval(1.0 / 60)

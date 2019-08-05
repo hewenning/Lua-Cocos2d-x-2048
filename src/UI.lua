@@ -52,7 +52,7 @@ function ui.createLayerBackground()
     GameBoard:addChild(GameBoard_Test)
     ui.temp = GameBoard_Test
 
-    -- 吧最开始的数据和分数刷上去 --
+    -- 把最开始的数据和分数刷上去 --
     local initArray = algorithm.index
     for i,v in ipairs(initArray) do
         local initLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
@@ -100,7 +100,7 @@ function ui.ArrayLabel(Array)
     end
     local ScoreValue = cc.LabelTTF:create(score.count, "fonts/Marker Felt.ttf", 25)
     ui.temp:addChild(ScoreValue)
-    ScoreValue:setPosition(107, 207)
+    ScoreValue:setPosition(115, 207)
     ScoreValue:setAnchorPoint(0, 0)
     -- 测试分数能否正常输出 --
     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
