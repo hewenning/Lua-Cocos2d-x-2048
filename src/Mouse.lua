@@ -19,7 +19,7 @@ function mouse.mouseLinsener()
         mousePosition[1] = touchBeginPoint.x
         mousePosition[2] = touchBeginPoint.y
         -- 在这里调用函数清空信息即可 --
-        ui.index:removeChild(ui.temp, true)
+        ui.index:removeChild(ui.temp, true)      
         return true
     end
 
@@ -59,7 +59,9 @@ function mouse.mouseLinsener()
             ui.ArrayLabel(ArrayValue)
  
         end
-
+        
+        -- 判断游戏是否胜利 --
+        algorithm.getWin()
         -- 测试类使用的代码 --
         -- a = algorithm.piece_class.new(12)
         -- a:print_x()

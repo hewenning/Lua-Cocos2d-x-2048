@@ -27,7 +27,7 @@ function algorithm.getRandomNumber(afterRandomArray)
     randomNum = math.random(1, length)
     -- 确定随机数的位置
     randomPosition = tempArray[randomNum]
-    afterRandomArray[randomPosition] = 2
+    afterRandomArray[randomPosition] = 1024
     return afterRandomArray
 end
 
@@ -41,8 +41,6 @@ algorithm.index = algorithm.getRandomNumber(ArrayValue)
 -- 根据鼠标的移动方向，从而决定块的移动 --
 function algorithm.direction(move)
     -- 利用一个1*16数组存储每个节点出现的信息,开始的时候都初始化为0,数字的值代表该位置出现的数字，只可能是2的倍数 --
-
-    
     -- 根据接收的参数，决定鼠标的移动方向 --
     -- 向上移动
     if move == 1 then
@@ -199,7 +197,11 @@ function algorithm.direction(move)
         print("over")
         return ArrayValue
     end
-    
+
+
+
+
+
     -- -- 判断游戏是否结束 --
     -- local count = 0
     -- -- 记录非空元素的个数
@@ -234,6 +236,20 @@ function algorithm.direction(move)
     --     end                
     -- end
 
+end
+
+-- 判断游戏是否胜利 --
+function algorithm.getWin()
+    -- 如果数组值达到2048，直接结束游戏，输出YouWin --
+    for maxPosition, maxValue in ipairs(ArrayValue) do
+        if maxValue == 2048 then
+            ui.index:removeChild(ui.temp, true)
+            local YouWin = cc.LabelTTF:create("You,Win!", "fonts/Marker Felt.ttf", 40)
+            ui.index:addChild(YouWin)
+            YouWin:setPosition(100, 100)
+            YouWin:setAnchorPoint(0.5, 0.5) 
+        end
+    end    
 end
 
 return algorithm
