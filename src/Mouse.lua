@@ -1,3 +1,4 @@
+require("score")
 mouse = {}
 -- 存取鼠标数据的函数 --
 local mousePosition = {0, 0, 0, 0}

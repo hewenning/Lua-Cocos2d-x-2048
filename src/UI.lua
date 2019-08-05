@@ -27,22 +27,6 @@ function ui.createLayerBackground()
     LayerBackground:addChild(GameBoard)
     ui.index = GameBoard
 
-    -- 新建一个作为渲染的图层 --
-    local GameBoard_Test = cc.Sprite:create("board.jpg")
-    GameBoard_Test:setPosition(0, 0)
-    GameBoard_Test:setAnchorPoint(0, 0)
-    GameBoard:addChild(GameBoard_Test)
-    ui.temp = GameBoard_Test
-
-    local initArray = algorithm.index
-    -- 最开始的数据刷上去 --
-    for i,v in ipairs(initArray) do
-        local initLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
-        ui.temp:addChild(initLabel)
-        initLabel:setPosition(ArrayPosition[i][1], ArrayPosition[i][2])
-        initLabel:setAnchorPoint(0.5, 0.5) 
-        print(v)    
-    end
     
     -- 2048的LOGO --
     local LOGO = cc.Label:createWithTTF( "2048", "fonts/Fingerpop.ttf", 45)
@@ -56,21 +40,36 @@ function ui.createLayerBackground()
     LayerBackground:addChild(ScoreLabel)
     ScoreLabel:setPosition(45, 220)
     ScoreLabel:setAnchorPoint(0, 0)
-    
 
-    
+
+    --------------------
+    --    初始化UI部分  --
+    --------------------
+    -- 新建一个作为渲染的图层 --
+    local GameBoard_Test = cc.Sprite:create("board.jpg")
+    GameBoard_Test:setPosition(0, 0)
+    GameBoard_Test:setAnchorPoint(0, 0)
+    GameBoard:addChild(GameBoard_Test)
+    ui.temp = GameBoard_Test
+
+    -- 吧最开始的数据和分数刷上去 --
+    local initArray = algorithm.index
+    for i,v in ipairs(initArray) do
+        local initLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
+        ui.temp:addChild(initLabel)
+        initLabel:setPosition(ArrayPosition[i][1], ArrayPosition[i][2])
+        initLabel:setAnchorPoint(0.5, 0.5) 
+        print(v)    
+    end
+
     -- 分数数值标签 --
     local ScoreValue = cc.LabelTTF:create("00000", "fonts/Marker Felt.ttf", 25)
-    LayerBackground:addChild(ScoreValue)
-    ScoreValue:setPosition(135, 226)
+    ui.temp:addChild(ScoreValue)
+    ScoreValue:setPosition(107, 207)
     ScoreValue:setAnchorPoint(0, 0)
 
 
-    -- 显示随机数 --
-    --randomNumber = algorithm.random()
-    --GameBoard:addChild(randomNumber)
-
-    -- 处理鼠标动作
+    -- 处理鼠标动作--
     listener = mouse.mouseLinsener()
     local eventDispatcher = BackGround:getEventDispatcher()
     eventDispatcher:addEventListenerWithSceneGraphPriority(listener, BackGround)
@@ -99,6 +98,13 @@ function ui.ArrayLabel(Array)
         numberLabel:setAnchorPoint(0.5, 0.5) 
         print(v)    
     end
+    local ScoreValue = cc.LabelTTF:create(score.count, "fonts/Marker Felt.ttf", 25)
+    ui.temp:addChild(ScoreValue)
+    ScoreValue:setPosition(107, 207)
+    ScoreValue:setAnchorPoint(0, 0)
+    -- 测试分数能否正常输出 --
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    print(score.count)
 end
 
 return ui
