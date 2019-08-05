@@ -1,111 +1,112 @@
 require "class"
 require "mouse"
-algorithm = {}
+algorithm = {index =1,}
+
 --------------------
 --    逻辑显示部分 --
 --------------------
 -- 设定一个显示的类，可以新建对象，每个对象可以使用里面的函数 --
 -- 新建一个棋盘显示的类，并在类里面完成初始化 --
-algorithm.piece_class = class()
+-- algorithm.piece_class = class()
 
--- 定义类的构造函数 --
-function algorithm.piece_class:ctor(num, cX, cY)
-    self.number = num
-    self.cX = cX
-    self.cY = cY
-end
-
-
--- 定义用于测试的成员函数 --
-function algorithm.piece_class:print_x()
-    print(self.x)
-end
+-- -- 定义类的构造函数 --
+-- function algorithm.piece_class:ctor(num, cX, cY)
+--     self.number = num
+--     self.cX = cX
+--     self.cY = cY
+-- end
 
 
--- 定义用于储存信息的函数，关于位置和应该显示的数字 --
-function algorithm.piece_class:setPosition()
---     ArrayPosition = {{25, 175}, {75, 175}, {125, 175}, {175, 175},
---                     {25, 125}, {75, 125}, {125, 125}, {175, 125},
---                     {25, 75}, {75, 75}, {125, 75}, {175, 75},
---                     {25, 25}, {75, 25}, {125, 25}, {175, 25}}
-end
-function algorithm.piece_class:getPosition()
-end
+-- -- 定义用于测试的成员函数 --
+-- function algorithm.piece_class:print_x()
+--     print(self.x)
+-- end
 
--- 定义设置每个对象数值的函数和获取每个对象数值的函数 -- 
-function algorithm.piece_class:setNumber()
-end 
 
-function algorithm.piece_class:getNumber()
-end
+-- -- 定义用于储存信息的函数，关于位置和应该显示的数字 --
+-- function algorithm.piece_class:setPosition()
+-- --     ArrayPosition = {{25, 175}, {75, 175}, {125, 175}, {175, 175},
+-- --                     {25, 125}, {75, 125}, {125, 125}, {175, 125},
+-- --                     {25, 75}, {75, 75}, {125, 75}, {175, 75},
+-- --                     {25, 25}, {75, 25}, {125, 25}, {175, 25}}
+-- end
+-- function algorithm.piece_class:getPosition()
+-- end
 
--- 定义用于棋盘显示的函数 -- 
-function algorithm.piece_class:Display()
-end
+-- -- 定义设置每个对象数值的函数和获取每个对象数值的函数 -- 
+-- function algorithm.piece_class:setNumber()
+-- end 
 
--- 根数字的值来渲染颜色信息 --
-function algorithm.piece_class:setColor()
-    -- for i, v in ArrayValue do
-    --     if value == 0 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 2 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 4 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 8 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 16 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 32 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 64 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 128 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 256 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 512 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 1024 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 2048 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     elseif value == 4096 then
-    --         -- to do
-    --         -- setColor(cc.c3b(204, 192, 180)
-    --     end
-    -- end 
-end
+-- function algorithm.piece_class:getNumber()
+-- end
 
--- 新建16个关于棋子的对象，每个对象保存位置和数值信息 --
-Piece_1 = algorithm.piece_class.new()
-Piece_2 = algorithm.piece_class.new()
-Piece_3 = algorithm.piece_class.new()
-Piece_4 = algorithm.piece_class.new()
-Piece_5 = algorithm.piece_class.new()
-Piece_6 = algorithm.piece_class.new()
-Piece_7 = algorithm.piece_class.new()
-Piece_8 = algorithm.piece_class.new()
-Piece_9 = algorithm.piece_class.new()
-Piece_10 = algorithm.piece_class.new()
-Piece_11 = algorithm.piece_class.new()
-Piece_12 = algorithm.piece_class.new()
-Piece_13 = algorithm.piece_class.new()
-Piece_14 = algorithm.piece_class.new()
-Piece_15 = algorithm.piece_class.new()
-Piece_16 = algorithm.piece_class.new()
+-- -- 定义用于棋盘显示的函数 -- 
+-- function algorithm.piece_class:Display()
+-- end
+
+-- -- 根数字的值来渲染颜色信息 --
+-- function algorithm.piece_class:setColor()
+--     -- for i, v in ArrayValue do
+--     --     if value == 0 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 2 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 4 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 8 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 16 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 32 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 64 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 128 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 256 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 512 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 1024 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 2048 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     elseif value == 4096 then
+--     --         -- to do
+--     --         -- setColor(cc.c3b(204, 192, 180)
+--     --     end
+--     -- end 
+-- end
+
+-- -- 新建16个关于棋子的对象，每个对象保存位置和数值信息 --
+-- Piece_1 = algorithm.piece_class.new()
+-- Piece_2 = algorithm.piece_class.new()
+-- Piece_3 = algorithm.piece_class.new()
+-- Piece_4 = algorithm.piece_class.new()
+-- Piece_5 = algorithm.piece_class.new()
+-- Piece_6 = algorithm.piece_class.new()
+-- Piece_7 = algorithm.piece_class.new()
+-- Piece_8 = algorithm.piece_class.new()
+-- Piece_9 = algorithm.piece_class.new()
+-- Piece_10 = algorithm.piece_class.new()
+-- Piece_11 = algorithm.piece_class.new()
+-- Piece_12 = algorithm.piece_class.new()
+-- Piece_13 = algorithm.piece_class.new()
+-- Piece_14 = algorithm.piece_class.new()
+-- Piece_15 = algorithm.piece_class.new()
+-- Piece_16 = algorithm.piece_class.new()
 
 
 --------------------
@@ -133,11 +134,46 @@ Piece_16 = algorithm.piece_class.new()
 --     return randomNumber
 
 -- end
--- 初始化的时候，先把每个数组都处理掉 --
+
+
+--------------------
+--    随机数部分  --
+--------------------
+-- 初始化数组，生成随机数 --
 local ArrayValue = {}
 for i=1, 16 do
-    table.insert(ArrayValue, 2)
+    table.insert(ArrayValue, 0)
 end
+-- 在随机位置生成数字，利用系统时间最高的6位当作随机数种子
+-- math.randomseed(tostring(os.time()):reverse():sub(1, 6))
+-- randomNumber = math.random(1, 16)
+-- 检查数组的值，并且把为0的值的位置，在不为0的地方，把随机数刷上去 --
+-- ArrayValue[randomNumber] = 2
+-- 随机数函数 --
+function algorithm.getRandomNumber(afterRandomArray)
+    local tempArray = {}
+    -- 在不是0的位置上随机生成2 --
+    for position, value in ipairs(afterRandomArray) do
+        if value == 0 then
+            table.insert(tempArray, position)
+        end
+    end
+    length = table.getn(tempArray)
+    math.randomseed(tostring(os.time()):reverse():sub(1, 6))
+    randomNum = math.random(1, length)
+    -- 确定随机数的位置
+    randomPosition = tempArray[randomNum]
+    afterRandomArray[randomPosition] = 2
+    return afterRandomArray
+end
+
+-- 传递数组的值 --
+algorithm.index = algorithm.getRandomNumber(ArrayValue)
+
+
+--------------------
+--    算法逻辑部分 --
+--------------------
 -- 根据鼠标的移动方向，从而决定块的移动 --
 function algorithm.direction(move)
     -- 利用一个1*16数组存储每个节点出现的信息,开始的时候都初始化为0,数字的值代表该位置出现的数字，只可能是2的倍数 --
