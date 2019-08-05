@@ -18,8 +18,7 @@ function mouse.mouseLinsener()
         -- CCTOUCHBEGAN event must return true
         mousePosition[1] = touchBeginPoint.x
         mousePosition[2] = touchBeginPoint.y
-        -- 在这里调用函数清空信息即可 --
-        ui.index:removeChild(ui.temp, true)      
+            
         return true
     end
 
@@ -31,7 +30,8 @@ function mouse.mouseLinsener()
         mousePosition[3] = touchEndPoint.x
         mousePosition[4] = touchEndPoint.y
         
-        
+        -- 在这里调用函数清空信息即可 --
+        ui.index:removeChild(ui.temp, true) 
         -- 判断鼠标移动的方向--
         if math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] > mousePosition[2] then
             -- mouse.getMoveInformation(1)
