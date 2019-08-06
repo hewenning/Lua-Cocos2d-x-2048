@@ -17,8 +17,17 @@ function mouse.mouseLinsener()
         cclog("onTouchBegan: %0.2f, %0.2f", touchBeginPoint.x, touchBeginPoint.y)
         -- CCTOUCHBEGAN event must return true
         mousePosition[1] = touchBeginPoint.x
-        mousePosition[2] = touchBeginPoint.y       
-        return true
+        mousePosition[2] = touchBeginPoint.y
+        -- 在这里加上restart --
+        if mousePosition[1] >= 192 and mousePosition[1] <= 218 and mousePosition[2] >= 227 and mousePosition[2] <= 253 then
+            print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
+            ui.index:removeChild(ui.temp, true)
+            algorithm.index = algorithm.getRandomNumber(algorithm.init)
+            ui.initUI()
+            return false
+        else
+            return true
+        end
     end
 
     -- 鼠标松开
