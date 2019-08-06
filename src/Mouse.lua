@@ -21,6 +21,7 @@ function mouse.mouseLinsener()
         -- 在这里加上restart --
         if mousePosition[1] >= 192 and mousePosition[1] <= 218 and mousePosition[2] >= 227 and mousePosition[2] <= 253 then
             print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
+            print("restart")
             ui.index:removeChild(ui.temp, true)
             algorithm.initArrayValue()
             ui.initUI()

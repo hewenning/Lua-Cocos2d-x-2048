@@ -114,8 +114,9 @@ function ui.ArrayLabel(Array)
     ScoreValue:setPosition(115, 207)
     ScoreValue:setAnchorPoint(0, 0)
     -- 测试分数能否正常输出 --
-    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    print(score.count)
+    print("-----------------")
+    print("-- score:" .. score.count .. " --")
+    print("-----------------")
 end
 
 return ui

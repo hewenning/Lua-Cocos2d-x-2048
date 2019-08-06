@@ -88,7 +88,9 @@ function algorithm.direction(move)
                 end
             end  
         end
-        print("over")
+        print("-------------")
+        print("-- up over --")
+        print("-------------")
         return ArrayValue
     end
 
@@ -127,7 +129,9 @@ function algorithm.direction(move)
                 end
             end  
         end
-        print("over")
+        print("---------------")
+        print("-- down over --")
+        print("---------------")
         return ArrayValue
     end 
     
@@ -166,7 +170,9 @@ function algorithm.direction(move)
                 end
             end  
         end
-        print("over")
+        print("---------------")
+        print("-- left over --")
+        print("---------------")
         return ArrayValue
     end
 
@@ -205,7 +211,9 @@ function algorithm.direction(move)
                 end
             end  
         end
-        print("over")
+        print("----------------")
+        print("-- right over --")
+        print("----------------")
         return ArrayValue
     end
 end
@@ -219,7 +227,10 @@ function algorithm.getWin()
             local YouWin = cc.LabelTTF:create("You Win!", "fonts/Marker Felt.ttf", 40)
             ui.index:addChild(YouWin)
             YouWin:setPosition(100, 100)
-            YouWin:setAnchorPoint(0.5, 0.5) 
+            YouWin:setAnchorPoint(0.5, 0.5)
+            print("--------------")
+            print("-- You Win! --")
+            print("--------------")
         end
     end    
 end
@@ -257,6 +268,8 @@ function algorithm.getOver()
                 ui.index:addChild(over)
                 over:setPosition(100, 100)
                 over:setAnchorPoint(0.5, 0.5)
+                print(">>>>>>>>>>>>>>>>")
+                print("Game Over!")
             end  
         end                
     end    
