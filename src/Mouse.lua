@@ -17,8 +17,7 @@ function mouse.mouseLinsener()
         cclog("onTouchBegan: %0.2f, %0.2f", touchBeginPoint.x, touchBeginPoint.y)
         -- CCTOUCHBEGAN event must return true
         mousePosition[1] = touchBeginPoint.x
-        mousePosition[2] = touchBeginPoint.y
-            
+        mousePosition[2] = touchBeginPoint.y       
         return true
     end
 
@@ -62,6 +61,8 @@ function mouse.mouseLinsener()
         
         -- 判断游戏是否胜利 --
         algorithm.getWin()
+        -- 判断游戏是否结束 --
+        algorithm.getOver()
         -- 测试类使用的代码 --
         -- a = algorithm.piece_class.new(12)
         -- a:print_x()

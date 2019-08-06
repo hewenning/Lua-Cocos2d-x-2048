@@ -22,7 +22,13 @@ function algorithm.getRandomNumber(afterRandomArray)
             table.insert(tempArray, position)
         end
     end
+
     length = table.getn(tempArray)
+    -- 判断是否有地方随机生成 --
+    if length == 0 then
+        return afterRandomArray
+    end
+
     math.randomseed(tostring(os.time()):reverse():sub(1, 6))
     randomNum = math.random(1, length)
     -- 确定随机数的位置
@@ -197,45 +203,6 @@ function algorithm.direction(move)
         print("over")
         return ArrayValue
     end
-
-
-
-
-
-    -- -- 判断游戏是否结束 --
-    -- local count = 0
-    -- -- 记录非空元素的个数
-    -- for JudgeEnd, JudgeValue in ipairs(ArrayValue) do
-    --     if JudgeValue ~= 0 then
-    --         count = count +1
-    --     end
-    -- end
-    -- -- 如果非空元素的个数为16
-    -- if count == 16 then
-    --     -- 循环遍历所有非空元素
-    --     for index, value in ipairs(ArrayValue) do
-    --         -- 上面元素存在并且和当前元素内容相同
-    --         if ArrayValue[index-4] ~= 0 and value == ArrayValue[index-4] then
-    --             break
-    --         -- 下面元素存在并且和当前元素内容相同
-    --         elseif ArrayValue[index+4] ~= 0 and value == ArrayValue[index+4] then
-    --             break
-    --         -- 左侧元素存在并且和当前元素内容相同
-    --         elseif ArrayValue[index-1] ~= 0 and value == ArrayValue[index-1] then
-    --             break
-    --         -- 右侧元素存在并且和当前元素内容相同
-    --         elseif ArrayValue[index+1] ~= 0 and value == ArrayValue[index+1] then
-    --             break
-    --         -- 以上条件都不满足，游戏结束
-    --         else
-    --             local over = cc.LabelTTF:create("GameOver", "fonts/Marker Felt.ttf", 50)
-    --             ui.index:addChild(one)
-    --             over:setPosition(160, 240)
-    --             over:setAnchorPoint(0.5, 0.5)
-    --         end  
-    --     end                
-    -- end
-
 end
 
 -- 判断游戏是否胜利 --
@@ -249,6 +216,44 @@ function algorithm.getWin()
             YouWin:setPosition(100, 100)
             YouWin:setAnchorPoint(0.5, 0.5) 
         end
+    end    
+end
+
+-- 判断游戏是否结束 --
+function algorithm.getOver()
+    -- 判断游戏是否结束 --
+    local count = 0
+    -- 记录非空元素的个数
+    for JudgeEnd, JudgeValue in ipairs(ArrayValue) do
+        if JudgeValue ~= 0 then
+            count = count +1
+        end
+    end
+    -- 如果非空元素的个数为16
+    if count == 16 then
+        -- 循环遍历所有非空元素
+        for index, value in ipairs(ArrayValue) do
+            -- 上面元素存在并且和当前元素内容相同
+            if ArrayValue[index-4] ~= 0 and value == ArrayValue[index-4] then
+                break
+            -- 下面元素存在并且和当前元素内容相同
+            elseif ArrayValue[index+4] ~= 0 and value == ArrayValue[index+4] then
+                break
+            -- 左侧元素存在并且和当前元素内容相同
+            elseif ArrayValue[index-1] ~= 0 and value == ArrayValue[index-1] then
+                break
+            -- 右侧元素存在并且和当前元素内容相同
+            elseif ArrayValue[index+1] ~= 0 and value == ArrayValue[index+1] then
+                break
+            -- 以上条件都不满足，游戏结束
+            else
+                ui.index:removeChild(ui.temp, true)
+                local over = cc.LabelTTF:create("GameOver", "fonts/Marker Felt.ttf", 40)
+                ui.index:addChild(over)
+                over:setPosition(100, 100)
+                over:setAnchorPoint(0.5, 0.5)
+            end  
+        end                
     end    
 end
 
