@@ -22,7 +22,13 @@ function algorithm.getRandomNumber(afterRandomArray)
             table.insert(tempArray, position)
         end
     end
+
     length = table.getn(tempArray)
+    -- 判断是否有地方随机生成 --
+    if length == 0 then
+        return afterRandomArray
+    end
+
     math.randomseed(tostring(os.time()):reverse():sub(1, 6))
     randomNum = math.random(1, length)
     -- 确定随机数的位置
