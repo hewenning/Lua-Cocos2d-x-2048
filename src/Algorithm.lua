@@ -8,16 +8,16 @@ local ArrayValue = {}
 for i=1, 16 do
     table.insert(ArrayValue, 0)
 end
--- 用于初始化的数组 --
-algorithm.init = {}
-for i=1, 16 do
-    table.insert(algorithm.init, 0)
+
+-- 数组和分数初始化函数 --
+function algorithm.initArrayValue()
+    ArrayValue = {}
+    for i=1, 16 do
+        table.insert(ArrayValue, 0)
+    end
+    score.count = 0
 end
--- 在随机位置生成数字，利用系统时间最高的6位当作随机数种子
--- math.randomseed(tostring(os.time()):reverse():sub(1, 6))
--- randomNumber = math.random(1, 16)
--- 检查数组的值，并且把为0的值的位置，在不为0的地方，把随机数刷上去 --
--- ArrayValue[randomNumber] = 2
+
 -- 随机数函数 --
 function algorithm.getRandomNumber(afterRandomArray)
     local tempArray = {}

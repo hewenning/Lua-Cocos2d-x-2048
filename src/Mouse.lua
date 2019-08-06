@@ -22,9 +22,9 @@ function mouse.mouseLinsener()
         if mousePosition[1] >= 192 and mousePosition[1] <= 218 and mousePosition[2] >= 227 and mousePosition[2] <= 253 then
             print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
             ui.index:removeChild(ui.temp, true)
-            algorithm.index = algorithm.getRandomNumber(algorithm.init)
+            algorithm.initArrayValue()
             ui.initUI()
-            return false
+            return true
         else
             return true
         end
