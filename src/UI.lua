@@ -41,15 +41,42 @@ function ui.createLayerBackground()
     ScoreLabel:setPosition(45, 220)
     ScoreLabel:setAnchorPoint(0, 0)
 
+    -- 加入restart按钮键 --
+    local restartLabel = cc.Sprite:create("restart.png")
+    restartLabel:setPosition(205, 240)
+    LayerBackground:addChild(restartLabel) 
 
-    --------------------
-    --    初始化UI部分  --
-    --------------------
+    -- 渲染最开始的棋盘界面 --
+    ui.initUI()
+    
+    -- 分数数值标签 --
+    local ScoreValue = cc.LabelTTF:create("0", "fonts/Marker Felt.ttf", 25)
+    ui.temp:addChild(ScoreValue)
+    ScoreValue:setPosition(115, 207)
+    ScoreValue:setAnchorPoint(0, 0)
+
+
+    -- 处理鼠标动作--
+    listener = mouse.mouseLinsener()
+    local eventDispatcher = GameBoard:getEventDispatcher()
+    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, ui.index)
+  
+
+    -- 返回图层 -- 
+    return LayerBackground
+
+end
+
+-- 最开始的时候棋盘上的ui界面 --
+function ui.initUI()
+    ------------------
+    --   初始化UI部分  --
+    ------------------
     -- 新建一个作为渲染的图层 --
     local GameBoard_Test = cc.Sprite:create("board.jpg")
     GameBoard_Test:setPosition(0, 0)
     GameBoard_Test:setAnchorPoint(0, 0)
-    GameBoard:addChild(GameBoard_Test)
+    ui.index:addChild(GameBoard_Test)
     ui.temp = GameBoard_Test
 
     -- 把最开始的数据和分数刷上去 --
@@ -61,22 +88,6 @@ function ui.createLayerBackground()
         initLabel:setAnchorPoint(0.5, 0.5) 
         print(v)    
     end
-
-    -- 分数数值标签 --
-    local ScoreValue = cc.LabelTTF:create("00000", "fonts/Marker Felt.ttf", 25)
-    ui.temp:addChild(ScoreValue)
-    ScoreValue:setPosition(107, 207)
-    ScoreValue:setAnchorPoint(0, 0)
-
-
-    -- 处理鼠标动作--
-    listener = mouse.mouseLinsener()
-    local eventDispatcher = BackGround:getEventDispatcher()
-    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, BackGround)
-    
-
-    -- 返回图层 -- 
-    return LayerBackground
 
 end
 

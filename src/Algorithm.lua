@@ -1,6 +1,6 @@
 require "class"
 require "mouse"
-algorithm = {index =1,}
+algorithm = {index =1,init = 1,}
 
 
 -- 初始化数组，生成随机数 --
@@ -8,11 +8,16 @@ local ArrayValue = {}
 for i=1, 16 do
     table.insert(ArrayValue, 0)
 end
--- 在随机位置生成数字，利用系统时间最高的6位当作随机数种子
--- math.randomseed(tostring(os.time()):reverse():sub(1, 6))
--- randomNumber = math.random(1, 16)
--- 检查数组的值，并且把为0的值的位置，在不为0的地方，把随机数刷上去 --
--- ArrayValue[randomNumber] = 2
+
+-- 数组和分数初始化函数 --
+function algorithm.initArrayValue()
+    ArrayValue = {}
+    for i=1, 16 do
+        table.insert(ArrayValue, 0)
+    end
+    score.count = 0
+end
+
 -- 随机数函数 --
 function algorithm.getRandomNumber(afterRandomArray)
     local tempArray = {}
@@ -211,7 +216,7 @@ function algorithm.getWin()
     for maxPosition, maxValue in ipairs(ArrayValue) do
         if maxValue == 2048 then
             ui.index:removeChild(ui.temp, true)
-            local YouWin = cc.LabelTTF:create("You,Win!", "fonts/Marker Felt.ttf", 40)
+            local YouWin = cc.LabelTTF:create("You Win!", "fonts/Marker Felt.ttf", 40)
             ui.index:addChild(YouWin)
             YouWin:setPosition(100, 100)
             YouWin:setAnchorPoint(0.5, 0.5) 
@@ -248,7 +253,7 @@ function algorithm.getOver()
             -- 以上条件都不满足，游戏结束
             else
                 ui.index:removeChild(ui.temp, true)
-                local over = cc.LabelTTF:create("GameOver", "fonts/Marker Felt.ttf", 40)
+                local over = cc.LabelTTF:create("Game Over!", "fonts/Marker Felt.ttf", 40)
                 ui.index:addChild(over)
                 over:setPosition(100, 100)
                 over:setAnchorPoint(0.5, 0.5)
