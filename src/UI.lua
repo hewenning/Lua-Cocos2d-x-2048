@@ -111,6 +111,7 @@ function ui.ArrayLabel(Array)
         print(v)    
     end
     local ScoreValue = cc.LabelTTF:create(score.count, "fonts/Marker Felt.ttf", 25)
+    ScoreValue:runAction(cc.Sequence:create(cc.ScaleTo:create(0, 0.1, 0.1), cc.ScaleTo:create(0.5, 1, 1))) 
     ui.temp:addChild(ScoreValue)
     ScoreValue:setPosition(115, 207)
     ScoreValue:setAnchorPoint(0, 0)
