@@ -1,4 +1,3 @@
-require "class"
 require "mouse"
 algorithm = {index =1,init = 1,}
 
@@ -34,11 +33,12 @@ function algorithm.getRandomNumber(afterRandomArray)
         return afterRandomArray
     end
 
-    math.randomseed(tostring(os.time()):reverse():sub(1, 6))
+    
     randomNum = math.random(1, length)
     -- 确定随机数的位置
     randomPosition = tempArray[randomNum]
     afterRandomArray[randomPosition] = 2
+
     return afterRandomArray
 end
 
@@ -154,20 +154,61 @@ function algorithm.direction(move)
                     -- ArrayValue[position] = ArrayValue[position]
                 -- 如果不在第一个位置
                 else
-                    -- 如果当前元素左侧是空元素
-                    if ArrayValue[position-3] == 0 and ArrayValue[position-2] == 0 and ArrayValue[position-1] == 0 then
-                        -- 向左移动
-                        ArrayValue[position-3] = ArrayValue[position]
-                        ArrayValue[position] = 0                  
-                    elseif ArrayValue[position-2] == 0 and ArrayValue[position-1] == 0 then
-                        -- 向左移动
-                        ArrayValue[position-2] = ArrayValue[position]
-                        ArrayValue[position] = 0
+                    -- 如果当前元素左侧是空元素 --
+                    if position == 4 or position == 8 or position == 12 or position == 16 then
+                        if ArrayValue[position-3] == 0 and ArrayValue[position-2] == 0 and ArrayValue[position-1] == 0 then
+                            -- 向左移动
+                            ArrayValue[position-3] = ArrayValue[position]
+                            ArrayValue[position] = 0                  
+                        elseif ArrayValue[position-2] == 0 and ArrayValue[position-1] == 0 then
+                            -- 向左移动
+                            ArrayValue[position-2] = ArrayValue[position]
+                            ArrayValue[position] = 0
+                        elseif ArrayValue[position-1] == 0 then
+                            -- 向左移动
+                            ArrayValue[position-1] = ArrayValue[position]
+                            ArrayValue[position] = 0
+                        else
+                            -- 如果左侧元素和当前元素的内容不同
+                            if ArrayValue[position-1] ~= ArrayValue[position] then
+                                -- 不动 
+                                -- ArrayValue[position-1] = ArrayValue[position-1]
+                                -- ArrayValue[position] = ArrayValue[position]
+                            -- 如果左侧元素与当前元素内容相同 
+                            else
+                                -- 向左合并
+                                ArrayValue[position-1] = ArrayValue[position-1] + ArrayValue[position]
+                                score.count = score.count + ArrayValue[position-1]
+                                ArrayValue[position] = 0
+                            end
+                        end
+                    elseif position == 3 or position == 7 or position == 11 or position == 15 then
+                        if ArrayValue[position-2] == 0 and ArrayValue[position-1] == 0 then
+                            -- 向左移动
+                            ArrayValue[position-2] = ArrayValue[position]
+                            ArrayValue[position] = 0
+                        elseif ArrayValue[position-1] == 0 then
+                            -- 向左移动
+                            ArrayValue[position-1] = ArrayValue[position]
+                            ArrayValue[position] = 0
+                        else
+                            -- 如果左侧元素和当前元素的内容不同
+                            if ArrayValue[position-1] ~= ArrayValue[position] then
+                                -- 不动 
+                                -- ArrayValue[position-1] = ArrayValue[position-1]
+                                -- ArrayValue[position] = ArrayValue[position]
+                            -- 如果左侧元素与当前元素内容相同 
+                            else
+                                -- 向左合并
+                                ArrayValue[position-1] = ArrayValue[position-1] + ArrayValue[position]
+                                score.count = score.count + ArrayValue[position-1]
+                                ArrayValue[position] = 0
+                            end
+                        end
                     elseif ArrayValue[position-1] == 0 then
                         -- 向左移动
                         ArrayValue[position-1] = ArrayValue[position]
                         ArrayValue[position] = 0
-                    -- 如果当前元素左侧是非空元素
                     else
                         -- 如果左侧元素和当前元素的内容不同
                         if ArrayValue[position-1] ~= ArrayValue[position] then
@@ -180,7 +221,7 @@ function algorithm.direction(move)
                             ArrayValue[position-1] = ArrayValue[position-1] + ArrayValue[position]
                             score.count = score.count + ArrayValue[position-1]
                             ArrayValue[position] = 0
-                        end
+                        end                    
                     end
                 end
             end  
@@ -291,4 +332,3 @@ function algorithm.getOver()
 end
 
 return algorithm
-
