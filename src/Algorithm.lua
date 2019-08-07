@@ -62,11 +62,18 @@ function algorithm.direction(move)
                 -- 如果当前元素在第一个位置
                 if position == 1 or position == 2 or position == 3 or position == 4 then
                     -- 不动
-                    ArrayValue[position] = ArrayValue[position]
+                    --ArrayValue[position] = ArrayValue[position]
                 -- 如果不在第一个位置
                 else
                     -- 如果当前元素上方是空元素
-                    if ArrayValue[position-4] == 0 then
+                    if ArrayValue[position-12] == 0 and ArrayValue[position-8] == 0 and ArrayValue[position-4] == 0 then
+                        ArrayValue[position-12] = ArrayValue[position]
+                        ArrayValue[position] = 0
+                    elseif ArrayValue[position-8] == 0 and ArrayValue[position-4] == 0 then
+                        -- 向上移动
+                        ArrayValue[position-8] = ArrayValue[position]
+                        ArrayValue[position] = 0
+                    elseif ArrayValue[position-4] == 0 then
                         -- 向上移动
                         ArrayValue[position-4] = ArrayValue[position]
                         ArrayValue[position] = 0
@@ -75,8 +82,8 @@ function algorithm.direction(move)
                         -- 如果上方元素和当前元素的内容不同
                         if ArrayValue[position-4] ~= ArrayValue[position] then
                             -- 不动 
-                            ArrayValue[position-4] = ArrayValue[position-4]
-                            ArrayValue[position] = ArrayValue[position]
+                            --ArrayValue[position-4] = ArrayValue[position-4]
+                            --ArrayValue[position] = ArrayValue[position]
                         -- 如果上方元素与当前元素内容相同 
                         else
                             -- 向上合并
@@ -103,7 +110,7 @@ function algorithm.direction(move)
                 -- 如果当前元素在第一个位置
                 if position == 13 or position == 14 or position == 15 or position == 16 then
                     -- 不动
-                    ArrayValue[position] = ArrayValue[position]
+                    --ArrayValue[position] = ArrayValue[position]
                 -- 如果不在第一个位置
                 else
                     -- 如果当前元素下方是空元素
@@ -116,8 +123,8 @@ function algorithm.direction(move)
                         -- 如果下方元素和当前元素的内容不同
                         if ArrayValue[position+4] ~= ArrayValue[position] then
                             -- 不动 
-                            ArrayValue[position+4] = ArrayValue[position+4]
-                            ArrayValue[position] = ArrayValue[position]
+                            --ArrayValue[position+4] = ArrayValue[position+4]
+                            --ArrayValue[position] = ArrayValue[position]
                         -- 如果下方元素与当前元素内容相同 
                         else
                             -- 向下合并
@@ -144,11 +151,19 @@ function algorithm.direction(move)
                 -- 如果当前元素在第一个位置
                 if position == 1 or position == 5 or position == 9 or position == 13 then
                     -- 不动
-                    ArrayValue[position] = ArrayValue[position]
+                    -- ArrayValue[position] = ArrayValue[position]
                 -- 如果不在第一个位置
                 else
                     -- 如果当前元素左侧是空元素
-                    if ArrayValue[position-1] == 0 then
+                    if ArrayValue[position-3] == 0 and ArrayValue[position-2] == 0 and ArrayValue[position-1] == 0 then
+                        -- 向左移动
+                        ArrayValue[position-3] = ArrayValue[position]
+                        ArrayValue[position] = 0                  
+                    elseif ArrayValue[position-2] == 0 and ArrayValue[position-1] == 0 then
+                        -- 向左移动
+                        ArrayValue[position-2] = ArrayValue[position]
+                        ArrayValue[position] = 0
+                    elseif ArrayValue[position-1] == 0 then
                         -- 向左移动
                         ArrayValue[position-1] = ArrayValue[position]
                         ArrayValue[position] = 0
@@ -157,8 +172,8 @@ function algorithm.direction(move)
                         -- 如果左侧元素和当前元素的内容不同
                         if ArrayValue[position-1] ~= ArrayValue[position] then
                             -- 不动 
-                            ArrayValue[position-1] = ArrayValue[position-1]
-                            ArrayValue[position] = ArrayValue[position]
+                            -- ArrayValue[position-1] = ArrayValue[position-1]
+                            -- ArrayValue[position] = ArrayValue[position]
                         -- 如果左侧元素与当前元素内容相同 
                         else
                             -- 向左合并
@@ -185,7 +200,7 @@ function algorithm.direction(move)
                 -- 如果当前元素在第一个位置
                 if position == 4 or position == 8 or position == 12 or position == 16 then
                     -- 不动
-                    ArrayValue[position] = ArrayValue[position]
+                    -- ArrayValue[position] = ArrayValue[position]
                 -- 如果不在第一个位置
                 else
                     -- 如果当前元素右侧是空元素
@@ -198,8 +213,8 @@ function algorithm.direction(move)
                         -- 如果右侧元素和当前元素的内容不同
                         if ArrayValue[position+1] ~= ArrayValue[position] then
                             -- 不动 
-                            ArrayValue[position+1] = ArrayValue[position+1]
-                            ArrayValue[position] = ArrayValue[position]
+                            -- ArrayValue[position+1] = ArrayValue[position+1]
+                            -- ArrayValue[position] = ArrayValue[position]
                         -- 如果左侧元素与当前元素内容相同 
                         else
                             -- 向左合并
@@ -250,16 +265,16 @@ function algorithm.getOver()
         -- 循环遍历所有非空元素
         for index, value in ipairs(ArrayValue) do
             -- 上面元素存在并且和当前元素内容相同
-            if ArrayValue[index-4] ~= 0 and value == ArrayValue[index-4] then
+            if value == ArrayValue[index-4] then
                 break
             -- 下面元素存在并且和当前元素内容相同
-            elseif ArrayValue[index+4] ~= 0 and value == ArrayValue[index+4] then
+            elseif value == ArrayValue[index+4] then
                 break
             -- 左侧元素存在并且和当前元素内容相同
-            elseif ArrayValue[index-1] ~= 0 and value == ArrayValue[index-1] then
+            elseif value == ArrayValue[index-1] then
                 break
             -- 右侧元素存在并且和当前元素内容相同
-            elseif ArrayValue[index+1] ~= 0 and value == ArrayValue[index+1] then
+            elseif value == ArrayValue[index+1] then
                 break
             -- 以上条件都不满足，游戏结束
             else

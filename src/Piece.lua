@@ -6,10 +6,10 @@ piece_class = class()
 
 -- 定义类的构造函数 --
 function piece_class:ctor(num, cX, cY)
-    self.number = num
+    -- self.number = num
     self.cX = cX
     self.cY = cY
-    
+
 end
 --     ArrayPosition = {{25, 175}, {75, 175}, {125, 175}, {175, 175},
 --                     {25, 125}, {75, 125}, {125, 125}, {175, 125},

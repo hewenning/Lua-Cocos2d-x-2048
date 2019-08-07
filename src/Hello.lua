@@ -2,6 +2,8 @@
 require "cocos.init"
 require "ui"
 
+
+
 -- cclog信息 --
 cclog = function(...)
     print(string.format(...))
@@ -47,6 +49,15 @@ local function main()
     sceneGame:addChild(ui.createLayerBackground())
     -- 运行场景
     cc.Director:getInstance():runWithScene(sceneGame)
+
+    
+    --
+    do
+        local poco = require('poco.poco_manager')
+        poco:init_server(15005)  -- default port number is 15004, change to another if you like
+    end
+
+    print("class" ,class)
 
 end
 
