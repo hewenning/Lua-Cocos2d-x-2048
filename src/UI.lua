@@ -11,7 +11,7 @@ function ui.createLayerBackground()
         
     local LayerBackground = cc.Layer:create()
     local visibleSize = cc.Director:getInstance():getVisibleSize()
-
+    math.randomseed(tostring(os.time()):reverse():sub(1, 6))
     --------------------
     --     UI部分     --
     --------------------
@@ -72,13 +72,8 @@ function ui.initUI()
     ------------------
     --   初始化UI部分  --
     ------------------
-    -- 新建一个作为渲染的图层 --
-    local GameBoard_Test = cc.Sprite:create("board.jpg")
-    GameBoard_Test:setPosition(0, 0)
-    GameBoard_Test:setAnchorPoint(0, 0)
-    ui.index:addChild(GameBoard_Test)
-    ui.temp = GameBoard_Test
-
+    -- 新建一个节点作为渲染 --
+    ui.getTempNode()
     -- 把最开始的数据和分数刷上去 --
     local initArray = algorithm.index
     for i,v in ipairs(initArray) do
@@ -91,17 +86,19 @@ function ui.initUI()
 
 end
 
-
+-- 新建用于渲染的图层节点，每次刷新完之后删除 --
+function ui.getTempNode()
+    local tempNode = cc.Node:create()
+    tempNode:setPosition(0, 0)
+    tempNode:setAnchorPoint(0, 0)
+    ui.index:addChild(tempNode)
+    ui.temp = tempNode
+end
 
 -- 根据数组的数值和位置渲染的函数 --
 function ui.ArrayLabel(Array)
     local ArrayValue = algorithm.getRandomNumber(Array)
-    -- 重新加图层节点 --
-    local tempGameBoard = cc.Sprite:create("board.jpg")
-    tempGameBoard:setPosition(0, 0)
-    tempGameBoard:setAnchorPoint(0, 0)
-    ui.index:addChild(tempGameBoard)
-    ui.temp = tempGameBoard
+    ui.getTempNode()
     for i,v in ipairs(ArrayValue) do
         local numberLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
         ui.temp:addChild(numberLabel)
