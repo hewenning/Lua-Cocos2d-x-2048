@@ -1,10 +1,15 @@
 require "algorithm"
+require "piece"
+require "score"
+
 ui = {index = 1, temp = 2,}
 --棋子所需要显示标签的数值 --
 local ArrayPosition = {{25, 175}, {75, 175}, {125, 175}, {175, 175},
                 {25, 125}, {75, 125}, {125, 125}, {175, 125},
                 {25, 75}, {75, 75}, {125, 75}, {175, 75},
                 {25, 25}, {75, 25}, {125, 25}, {175, 25}}
+ --ui.position = ArrayPosition
+local objTable = {}
 
 -- 创建背景图层 --
 function ui.createLayerBackground()
@@ -27,7 +32,6 @@ function ui.createLayerBackground()
     LayerBackground:addChild(GameBoard)
     ui.index = GameBoard
 
-    
     -- 2048的LOGO --
     local LOGO = cc.Label:createWithTTF( "2048", "fonts/Fingerpop.ttf", 45)
     LOGO:enableShadow(cc.BLACK, cc.size(5,2), 3)
@@ -46,44 +50,67 @@ function ui.createLayerBackground()
     restartLabel:setPosition(205, 240)
     LayerBackground:addChild(restartLabel) 
 
+    
+    -- 初始化对象 --
+    initObject()
     -- 渲染最开始的棋盘界面 --
     ui.initUI()
-    
-    -- 分数数值标签 --
-    local ScoreValue = cc.LabelTTF:create("0", "fonts/Marker Felt.ttf", 25)
-    ui.temp:addChild(ScoreValue)
-    ScoreValue:setPosition(115, 207)
-    ScoreValue:setAnchorPoint(0, 0)
-
-
     -- 处理鼠标动作--
     listener = mouse.mouseLinsener()
     local eventDispatcher = GameBoard:getEventDispatcher()
     eventDispatcher:addEventListenerWithSceneGraphPriority(listener, ui.index)
-  
 
     -- 返回图层 -- 
     return LayerBackground
 
 end
 
+-- 设置一个Table，用来保存新建的对象,并且把位置刷进去 --
+function initObject()
+    ui.getTempNode()
+    -- 棋子的对象 --
+    for i=1,16 do 
+	    local pieceObject = piece.index.new(0, ArrayPosition[i][1], ArrayPosition[i][2])
+        ui.index:addChild(pieceObject)
+        objTable[i] = pieceObject
+    end
+    -- 分数的对象 --
+    local scoreObject = score.index.new(0, 130, 220)
+    ui.index:addChild(scoreObject)
+    objTable[17] = scoreObject
+end
+
+
 -- 最开始的时候棋盘上的ui界面 --
 function ui.initUI()
-    ------------------
-    --   初始化UI部分  --
-    ------------------
-    -- 新建一个节点作为渲染 --
     ui.getTempNode()
+    ------------------
+    --  初始化UI部分  --
+    ------------------
     -- 把最开始的数据和分数刷上去 --
+    print("Come in initUI function.")
     local initArray = algorithm.index
     for i,v in ipairs(initArray) do
-        local initLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
-        ui.temp:addChild(initLabel)
-        initLabel:setPosition(ArrayPosition[i][1], ArrayPosition[i][2])
-        initLabel:setAnchorPoint(0.5, 0.5) 
-        print(v)    
+        objTable[i]:Display(v)
     end
+    objTable[17]:Display(score.count)
+end
 
+-- 每次重新刷新一次即可 --
+function ui.ArrayDisplay(Array)
+    ------------------
+    --  初始化UI部分  --
+    ------------------
+    -- 把最开始的数据和分数刷上去 --
+    print("Come in ArrayDisplay function.")
+    local ArrayValue = algorithm.getRandomNumber(Array)
+    local ArrayValue = Array
+    for i,v in ipairs(ArrayValue) do
+        objTable[i]:Display(v)
+        objTable[i]:play()
+    end
+    objTable[17]:Display(score.count)
+    objTable[17]:play()
 end
 
 -- 新建用于渲染的图层节点，每次刷新完之后删除 --
@@ -95,27 +122,68 @@ function ui.getTempNode()
     ui.temp = tempNode
 end
 
--- 根据数组的数值和位置渲染的函数 --
-function ui.ArrayLabel(Array)
-    local ArrayValue = algorithm.getRandomNumber(Array)
-    ui.getTempNode()
-    for i,v in ipairs(ArrayValue) do
-        local numberLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
-        ui.temp:addChild(numberLabel)
-        numberLabel:setPosition(ArrayPosition[i][1], ArrayPosition[i][2])
-        numberLabel:setAnchorPoint(0.5, 0.5)
-        numberLabel:runAction(cc.Sequence:create(cc.ScaleTo:create(0, 0.1, 0.1), cc.ScaleTo:create(0.5, 1, 1))) 
-        print(v)    
-    end
-    local ScoreValue = cc.LabelTTF:create(score.count, "fonts/Marker Felt.ttf", 25)
-    ScoreValue:runAction(cc.Sequence:create(cc.ScaleTo:create(0, 0.1, 0.1), cc.ScaleTo:create(0.5, 1, 1))) 
-    ui.temp:addChild(ScoreValue)
-    ScoreValue:setPosition(115, 207)
-    ScoreValue:setAnchorPoint(0, 0)
-    -- 测试分数能否正常输出 --
-    print("-----------------")
-    print("-- score:" .. score.count .. " --")
-    print("-----------------")
-end
-
 return ui
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- 最开始的时候棋盘上的ui界面 --
+-- function ui.initUI()
+--     ------------------
+--     --   初始化UI部分  --
+--     ------------------
+--     -- 新建一个节点作为渲染 --
+--     print(objTable[1])
+--     ui.getTempNode()
+--     -- 把最开始的数据和分数刷上去 --
+--     local initArray = algorithm.index
+--     for i,v in ipairs(initArray) do
+--         local initLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
+--         ui.temp:addChild(initLabel)
+--         initLabel:setPosition(ArrayPosition[i][1], ArrayPosition[i][2])
+--         initLabel:setAnchorPoint(0.5, 0.5) 
+--         print(v)    
+--     end
+-- end
+
+-- -- 新建用于渲染的图层节点，每次刷新完之后删除 --
+-- function ui.getTempNode()
+--     local tempNode = cc.Node:create()
+--     tempNode:setPosition(0, 0)
+--     tempNode:setAnchorPoint(0, 0)
+--     ui.index:addChild(tempNode)
+--     ui.temp = tempNode
+-- end
+
+-- -- 根据数组的数值和位置渲染的函数 --
+-- function ui.ArrayLabel(Array)
+--     local ArrayValue = algorithm.getRandomNumber(Array)
+--     ui.getTempNode()
+--     for i,v in ipairs(ArrayValue) do
+--         local numberLabel = cc.LabelTTF:create(v, "fonts/Marker Felt.ttf", 20)
+--         ui.temp:addChild(numberLabel)
+--         numberLabel:setPosition(ArrayPosition[i][1], ArrayPosition[i][2])
+--         numberLabel:setAnchorPoint(0.5, 0.5)
+--         numberLabel:runAction(cc.Sequence:create(cc.ScaleTo:create(0, 0.1, 0.1), cc.ScaleTo:create(0.5, 1, 1))) 
+--         print(v)    
+--     end
+--     local ScoreValue = cc.LabelTTF:create(score.count, "fonts/Marker Felt.ttf", 25)
+--     ScoreValue:runAction(cc.Sequence:create(cc.ScaleTo:create(0, 0.1, 0.1), cc.ScaleTo:create(0.5, 1, 1))) 
+--     ui.temp:addChild(ScoreValue)
+--     ScoreValue:setPosition(115, 207)
+--     ScoreValue:setAnchorPoint(0, 0)
+--     -- 测试分数能否正常输出 --
+--     print("-----------------")
+--     print("-- score:" .. score.count .. " --")
+--     print("-----------------")
+-- end
+

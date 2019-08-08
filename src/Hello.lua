@@ -57,7 +57,7 @@ local function main()
         poco:init_server(15005)  -- default port number is 15004, change to another if you like
     end
 
-    print("class" ,class)
+    -- print("class" ,class)
 
 end
 

@@ -22,6 +22,7 @@ function mouse.mouseLinsener()
         if mousePosition[1] >= 192 and mousePosition[1] <= 218 and mousePosition[2] >= 227 and mousePosition[2] <= 253 then
             print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
             print("restart")
+            print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
             ui.index:removeChild(ui.temp, true)
             algorithm.initArrayValue()
             ui.initUI()
@@ -40,33 +41,32 @@ function mouse.mouseLinsener()
         mousePosition[4] = touchEndPoint.y
         
         -- 在这里调用函数清空信息即可 --
-        ui.index:removeChild(ui.temp, true) 
+        -- ui.index:removeChild(ui.temp, true) 
         -- 判断鼠标移动的方向--
         if math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] > mousePosition[2] then
             -- mouse.getMoveInformation(1)
             -- 进入算法函数进行处理 --
             local ArrayValue = algorithm.direction(1)
             -- 进行界面的渲染
-            ui.ArrayLabel(ArrayValue)
+            ui.ArrayDisplay(ArrayValue)
 
         elseif math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] <= mousePosition[2] then
             -- mouse.getMoveInformation(2)
             --algorithm.direction(2)
             local ArrayValue = algorithm.direction(2)
-            ui.ArrayLabel(ArrayValue)
+            ui.ArrayDisplay(ArrayValue)
 
         elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] <= mousePosition[1] then
             -- mouse.getMoveInformation(3)
             -- algorithm.direction(3)
             local ArrayValue = algorithm.direction(3)
-            ui.ArrayLabel(ArrayValue)
+            ui.ArrayDisplay(ArrayValue)
 
         elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] > mousePosition[1] then
             -- mouse.getMoveInformation(4)
             -- algorithm.direction(4)
             local ArrayValue = algorithm.direction(4)
-            ui.ArrayLabel(ArrayValue)
- 
+            ui.ArrayDisplay(ArrayValue)           
         end
         
         -- 判断游戏是否胜利 --
@@ -87,17 +87,5 @@ function mouse.mouseLinsener()
 
 end
 
--- 测试鼠标移动信息的函数 --
-function mouse.getMoveInformation(number)
-    if number == 1 then
-        print("up")
-    elseif number == 2 then
-        print("down")
-    elseif number == 3 then
-        print("left")
-    elseif number == 4 then
-        print("right")
-    end
-end
 
 return mouse
