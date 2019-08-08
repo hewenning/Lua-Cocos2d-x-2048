@@ -23,7 +23,7 @@ function mouse.mouseLinsener()
             print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
             print("restart")
             print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
-            -- ui.index:removeChild(ui.temp, true)
+            ui.index:removeChild(ui.temp, true)
             algorithm.initArrayValue()
             ui.initUI()
             return true
@@ -87,17 +87,5 @@ function mouse.mouseLinsener()
 
 end
 
--- 测试鼠标移动信息的函数 --
-function mouse.getMoveInformation(number)
-    if number == 1 then
-        print("up")
-    elseif number == 2 then
-        print("down")
-    elseif number == 3 then
-        print("left")
-    elseif number == 4 then
-        print("right")
-    end
-end
 
 return mouse

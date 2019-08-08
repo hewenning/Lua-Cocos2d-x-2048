@@ -67,6 +67,7 @@ end
 
 -- 设置一个Table，用来保存新建的对象,并且把位置刷进去 --
 function initObject()
+    ui.getTempNode()
     -- 棋子的对象 --
     for i=1,16 do 
 	    local pieceObject = piece.index.new(0, ArrayPosition[i][1], ArrayPosition[i][2])
@@ -82,6 +83,7 @@ end
 
 -- 最开始的时候棋盘上的ui界面 --
 function ui.initUI()
+    ui.getTempNode()
     ------------------
     --  初始化UI部分  --
     ------------------
@@ -111,10 +113,16 @@ function ui.ArrayDisplay(Array)
     objTable[17]:play()
 end
 
+-- 新建用于渲染的图层节点，每次刷新完之后删除 --
+function ui.getTempNode()
+    local tempNode = cc.Node:create()
+    tempNode:setPosition(0, 0)
+    tempNode:setAnchorPoint(0, 0)
+    ui.index:addChild(tempNode)
+    ui.temp = tempNode
+end
+
 return ui
-
-
-
 
 
 

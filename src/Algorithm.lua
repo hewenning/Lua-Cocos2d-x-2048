@@ -279,9 +279,8 @@ function algorithm.getWin()
     -- 如果数组值达到2048，直接结束游戏，输出YouWin --
     for maxPosition, maxValue in ipairs(ArrayValue) do
         if maxValue == 2048 then
-            ui.index:removeChild(ui.temp, true)
             local YouWin = cc.LabelTTF:create("You Win!", "fonts/Marker Felt.ttf", 40)
-            ui.index:addChild(YouWin)
+            ui.temp:addChild(YouWin)
             YouWin:setPosition(100, 100)
             YouWin:setAnchorPoint(0.5, 0.5)
             print("--------------")
@@ -319,13 +318,13 @@ function algorithm.getOver()
                 break
             -- 以上条件都不满足，游戏结束
             else
-                ui.index:removeChild(ui.temp, true)
                 local over = cc.LabelTTF:create("Game Over!", "fonts/Marker Felt.ttf", 40)
-                ui.index:addChild(over)
+                ui.temp:addChild(over)
                 over:setPosition(100, 100)
                 over:setAnchorPoint(0.5, 0.5)
-                print(">>>>>>>>>>>>>>>>")
-                print("Game Over!")
+                print("----------------")
+                print("-- Game Over! --")
+                print("----------------")
             end  
         end                
     end    
