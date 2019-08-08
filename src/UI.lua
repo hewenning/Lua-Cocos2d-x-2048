@@ -1,10 +1,14 @@
 require "algorithm"
+require "piece"
+
 ui = {index = 1, temp = 2,}
 --棋子所需要显示标签的数值 --
 local ArrayPosition = {{25, 175}, {75, 175}, {125, 175}, {175, 175},
                 {25, 125}, {75, 125}, {125, 125}, {175, 125},
                 {25, 75}, {75, 75}, {125, 75}, {175, 75},
                 {25, 25}, {75, 25}, {125, 25}, {175, 25}}
+ --ui.position = ArrayPosition
+local objTable = {}
 
 -- 创建背景图层 --
 function ui.createLayerBackground()
@@ -61,7 +65,20 @@ function ui.createLayerBackground()
     local eventDispatcher = GameBoard:getEventDispatcher()
     eventDispatcher:addEventListenerWithSceneGraphPriority(listener, ui.index)
   
+    -- 设置一个Table，用来保存新建的对象,并且把位置刷进去 --
+    for i=1,16 do 
+	    local pieceObject = piece.index.new(0, ArrayPosition[i][1], ArrayPosition[i][2])
+        ui.index:addChild(pieceObject)
+        objTable[i] = pieceObject
+    end
 
+    -- 测试类里面的打印函数 --
+    --test:print_x(11)
+    -- 测试标签是否被正确初始化 -- 
+    -- 棋盘对象测试 --
+    -- print(objTable[2])
+    -- objTable[1]:Display(11)
+    objTable[1]:Display(1)
     -- 返回图层 -- 
     return LayerBackground
 
@@ -83,7 +100,7 @@ function ui.initUI()
         initLabel:setAnchorPoint(0.5, 0.5) 
         print(v)    
     end
-
+    -- objTable[1]:Display(11)
 end
 
 -- 新建用于渲染的图层节点，每次刷新完之后删除 --
