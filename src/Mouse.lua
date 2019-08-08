@@ -19,17 +19,17 @@ function mouse.mouseLinsener()
         mousePosition[1] = touchBeginPoint.x
         mousePosition[2] = touchBeginPoint.y
         -- 在这里加上restart --
-        -- if mousePosition[1] >= 192 and mousePosition[1] <= 218 and mousePosition[2] >= 227 and mousePosition[2] <= 253 then
-        --     print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
-        --     print("restart")
-        --     ui.index:removeChild(ui.temp, true)
-        --     algorithm.initArrayValue()
-        --     ui.initUI()
-        --     return true
-        -- else
-        --     return true
-        -- end
-        return true
+        if mousePosition[1] >= 192 and mousePosition[1] <= 218 and mousePosition[2] >= 227 and mousePosition[2] <= 253 then
+            print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
+            print("restart")
+            print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
+            -- ui.index:removeChild(ui.temp, true)
+            algorithm.initArrayValue()
+            ui.initUI()
+            return true
+        else
+            return true
+        end
     end
 
     -- 鼠标松开
@@ -48,14 +48,12 @@ function mouse.mouseLinsener()
             -- 进入算法函数进行处理 --
             local ArrayValue = algorithm.direction(1)
             -- 进行界面的渲染
-
             ui.ArrayDisplay(ArrayValue)
 
         elseif math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] <= mousePosition[2] then
             -- mouse.getMoveInformation(2)
             --algorithm.direction(2)
             local ArrayValue = algorithm.direction(2)
-            print(ArrayValue)
             ui.ArrayDisplay(ArrayValue)
 
         elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] <= mousePosition[1] then
@@ -68,8 +66,7 @@ function mouse.mouseLinsener()
             -- mouse.getMoveInformation(4)
             -- algorithm.direction(4)
             local ArrayValue = algorithm.direction(4)
-            ui.ArrayDisplay(ArrayValue)
- 
+            ui.ArrayDisplay(ArrayValue)           
         end
         
         -- 判断游戏是否胜利 --

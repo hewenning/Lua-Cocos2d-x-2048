@@ -32,7 +32,6 @@ function ui.createLayerBackground()
     LayerBackground:addChild(GameBoard)
     ui.index = GameBoard
 
-    
     -- 2048µÄLOGO --
     local LOGO = cc.Label:createWithTTF( "2048", "fonts/Fingerpop.ttf", 45)
     LOGO:enableShadow(cc.BLACK, cc.size(5,2), 3)
@@ -109,6 +108,7 @@ function ui.ArrayDisplay(Array)
         objTable[i]:play()
     end
     objTable[17]:Display(score.count)
+    objTable[17]:play()
 end
 
 return ui
