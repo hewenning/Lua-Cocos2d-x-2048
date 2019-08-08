@@ -17,12 +17,10 @@ function PieceClass:ctor(num, px, py)
 	-- 初始化 --
 	if num > 0 then
 		self.numLabel = cc.LabelTTF:create(num, "fonts/Marker Felt.ttf", 20)
-		-- self.numLabel = cc.UICCTextField.create()
 		self.numLabel:setPosition(px, py)
 		self.numLabel:setAnchorPoint(0.5, 0.5)
 	else
 		self.numLabel = cc.LabelTTF:create("", "fonts/Marker Felt.ttf", 20)
-		-- self.numLabel = cc.Label.create()
 		self.numLabel:setPosition(px, py)
 		self.numLabel:setAnchorPoint(0.5, 0.5)
 	end
@@ -36,7 +34,7 @@ end
 
 -- 动画效果函数 --
 function PieceClass:play()
-	self.numLabel:runAction(cc.Sequence:create(cc.ScaleTo:create(0, 0.1, 0.1), cc.ScaleTo:create(0.5, 1, 1)))
+	self.numLabel:runAction(cc.Sequence:create(cc.ScaleTo:create(0, 0.4, 0.4), cc.ScaleTo:create(0.5, 1, 1)))
 end
 
 -- 定义用于储存信息的函数，关于位置和应该显示的数字 --

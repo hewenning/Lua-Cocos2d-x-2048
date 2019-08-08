@@ -19,16 +19,17 @@ function mouse.mouseLinsener()
         mousePosition[1] = touchBeginPoint.x
         mousePosition[2] = touchBeginPoint.y
         -- 在这里加上restart --
-        if mousePosition[1] >= 192 and mousePosition[1] <= 218 and mousePosition[2] >= 227 and mousePosition[2] <= 253 then
-            print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
-            print("restart")
-            ui.index:removeChild(ui.temp, true)
-            algorithm.initArrayValue()
-            ui.initUI()
-            return true
-        else
-            return true
-        end
+        -- if mousePosition[1] >= 192 and mousePosition[1] <= 218 and mousePosition[2] >= 227 and mousePosition[2] <= 253 then
+        --     print(">>>>>>>>>>>>>>>>>>>>-------------->>>>>>>>>>>>>>>>>>>>")
+        --     print("restart")
+        --     ui.index:removeChild(ui.temp, true)
+        --     algorithm.initArrayValue()
+        --     ui.initUI()
+        --     return true
+        -- else
+        --     return true
+        -- end
+        return true
     end
 
     -- 鼠标松开
@@ -40,32 +41,34 @@ function mouse.mouseLinsener()
         mousePosition[4] = touchEndPoint.y
         
         -- 在这里调用函数清空信息即可 --
-        ui.index:removeChild(ui.temp, true) 
+        -- ui.index:removeChild(ui.temp, true) 
         -- 判断鼠标移动的方向--
         if math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] > mousePosition[2] then
             -- mouse.getMoveInformation(1)
             -- 进入算法函数进行处理 --
             local ArrayValue = algorithm.direction(1)
             -- 进行界面的渲染
-            ui.ArrayLabel(ArrayValue)
+
+            ui.ArrayDisplay(ArrayValue)
 
         elseif math.abs(mousePosition[3] - mousePosition[1]) <= math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[4] <= mousePosition[2] then
             -- mouse.getMoveInformation(2)
             --algorithm.direction(2)
             local ArrayValue = algorithm.direction(2)
-            ui.ArrayLabel(ArrayValue)
+            print(ArrayValue)
+            ui.ArrayDisplay(ArrayValue)
 
         elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] <= mousePosition[1] then
             -- mouse.getMoveInformation(3)
             -- algorithm.direction(3)
             local ArrayValue = algorithm.direction(3)
-            ui.ArrayLabel(ArrayValue)
+            ui.ArrayDisplay(ArrayValue)
 
         elseif math.abs(mousePosition[3] - mousePosition[1]) > math.abs(mousePosition[4] - mousePosition[2]) and mousePosition[3] > mousePosition[1] then
             -- mouse.getMoveInformation(4)
             -- algorithm.direction(4)
             local ArrayValue = algorithm.direction(4)
-            ui.ArrayLabel(ArrayValue)
+            ui.ArrayDisplay(ArrayValue)
  
         end
         
